@@ -109,6 +109,7 @@ function process(uipa) {
         { 'src': /(o\u028a)/g, 'dest': 'oU' },
         { 'src': /(\u0259\u0289)/g, 'dest': 'V' },
         { 'src': /(\u0254\u026a)/g, 'dest': 'OI' },
+        { 'src': /(\u02e4)/g, 'dest': '[:' },
         { 'src': /(o\u026a)/g, 'dest': 'OI' },
         { 'src': /(p)/g, 'dest': 'p' },
         { 'src': /(\u0279)/g, 'dest': 'r' },
