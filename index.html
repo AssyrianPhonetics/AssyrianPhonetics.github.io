@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>IPA Reader</title>
+    <title>Assyrian Phonetic Tool</title>
 
     <meta charset="UTF-8">
-    <meta name="description" content="Read Aloud Assyrian">
+    <meta name="description" content="Assyrian Phonetics Tool">
     <meta name="keywords" content="Assyrian,Sureth,phonetic">
     <meta name="author" content="Sargis Yonan">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,12 +46,6 @@
                 <div class="ipaout">
                     <output type="text" id="ipaout" placeholder="gɑw lɪljɑ wgɑw imɑmɑ">
                 </div>
-                <!-- <span class="ipaout" placeholder="ʃlɑmɑ"></span> -->
-
-
-               <!--  <div class="select">
-                    <select id="polly-voice"></select>
-                 --></div>
 
                 <button id="submit" type="submit">Read</button>
             </form>
@@ -63,48 +57,17 @@
 
         <aside id="about" class="info">
             <h2> Assyrian Phonetic Tool </h2>
-<!--             <h2>What Is This?</h2>
-
             <p>
-                This is a tool for reading <a href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet"
-                target="_blank">International Phonetic Alphabet (IPA)</a> notation aloud.</p>
-
+                This tool is intended to be used for verifying word pronunciations. 
+                Let me know if something seems off. This tool uses the meSpeak library to synthesize sound locally from your browser. 
+                The Syriac text is converted to IPA via a script that runs in AWS (contact me if you'd like to use this script). </p>
             <p>
-                It makes it easy to actually hear how words are pronounced based on their phonetic spelling, without
-                having to look up each character in <a href="https://upload.wikimedia.org/wikipedia/commons/8/8e/IPA_chart_2018.pdf"
-                target="_blank">the IPA chart</a> and string the sounds together yourself.
+                Refer to the <a href="https://upload.wikimedia.org/wikipedia/commons/8/8e/IPA_chart_2018.pdf"
+                target="_blank">the IPA chart</a> for IPA pronunciations. 
             </p>
 
+            <h2></h2>
             <p>
-                For example, "budgerigar" (AKA the <a href="https://en.wikipedia.org/wiki/Budgerigar"
-                target="_blank">common parakeet</a>) can be pronounced according to its IPA notation
-                <code>/ˈbʌdʒərɪɡɑːr/</code>.
-            </p>
-
-            <h2>How Do You Use It?</h2>
-
-            <p>
-                Find a word you would like to hear pronounced, grab the IPA notation (if you don't already have it,
-                <a href="https://en.wiktionary.org/" target="_blank">Wiktionary</a> is a great place to look),
-                toss it in the form, and hit the "Read" button.
-            </p>
-
-            <p>
-                For example, <code>/ˈpɪdʒən/</code> will be read as "pigeon."
-            </p>
-
-            <h2>How Does It Work?</h2>
-
-            <p>
-                I had fun making this, so I wrote about how it was built <a
-                href="https://www.cuttlesoft.com/pronouncing-things-with-amazons-polly/" target="_blank">here</a>!
-            </p>
-
-            <h2>Who Am I?</h2>
-
-            <p>
-                I'm nobody! Who are you? -->
-
                 <ul class="social">
                     <li>
                         <a href="https://github.com/SargisYonan" target="_blank">
