@@ -145,7 +145,7 @@ function process(uipa) {
         { 'src': /e@r([bdDfghklmnNprsStTvwjzZ])/g, 'dest': 'e@$1' },
 
         { 'src': /(r)/g, 'dest': 'rR' }, // Resh
-        { 'src': /(\u0251)/g, 'dest': 'a' }, //'A:' }, // Zqappa
+        { 'src': /(\u0251)/g, 'dest': 'A:' }, //'A:' }, // Zqappa
         { 'src': /(t\u02e4)/g, 'dest': 't[:' }, // Theth
         { 'src': /(s\u02e4)/g, 'dest': 's' }, // Sadeh
 

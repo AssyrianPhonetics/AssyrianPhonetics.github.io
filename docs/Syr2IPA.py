@@ -130,6 +130,8 @@ def ProcessSyriacWord(milta):
     ipaString = ''
     latinString = ''
     
+    # TODO: Add diphtong case for Yodh Khwasa + vowel
+
     for previous, atoota, nxt in previous_and_next(milta.word):
         # silence the letter if it has a Talqana
         if atoota.modifier.name == 'TALQANA':
