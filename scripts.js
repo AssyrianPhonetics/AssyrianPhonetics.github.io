@@ -45,7 +45,6 @@ function process(uipa) {
         { 'src': /(\.)/g, 'dest': '%' },
         { 'src': /(\u02c8)/g, 'dest': '\'' },
         { 'src': /(\u02cc)/g, 'dest': ',' },
-        { 'src': /(\u0251)/g, 'dest': 'A:' },
         { 'src': /(\u02d0)/g, 'dest': ':' },
         { 'src': /(\u0251\u02d0)/g, 'dest': 'A' },
         { 'src': /(\u0251\u0279)/g, 'dest': 'A' },
@@ -109,7 +108,6 @@ function process(uipa) {
         { 'src': /(o\u028a)/g, 'dest': 'oU' },
         { 'src': /(\u0259\u0289)/g, 'dest': 'V' },
         { 'src': /(\u0254\u026a)/g, 'dest': 'OI' },
-        { 'src': /(\u02e4)/g, 'dest': '[:' },
         { 'src': /(o\u026a)/g, 'dest': 'OI' },
         { 'src': /(p)/g, 'dest': 'p' },
         { 'src': /(\u0279)/g, 'dest': 'r' },
@@ -145,6 +143,11 @@ function process(uipa) {
         { 'src': /([^e])@r/g, 'dest': '$1:3' },
         { 'src': /e@r$/g, 'dest': 'e@' },
         { 'src': /e@r([bdDfghklmnNprsStTvwjzZ])/g, 'dest': 'e@$1' },
+
+        { 'src': /(r)/g, 'dest': 'rR' }, // Resh
+        { 'src': /(\u0251)/g, 'dest': 'a' }, //'A:' }, // Zqappa
+        { 'src': /(\u02e4)/g, 'dest': '[:' }, // Theth
+
 
         // edits arising from testing
         { 'src': /(\'k)+/g, 'dest': 'k\'' },  
