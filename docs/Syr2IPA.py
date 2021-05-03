@@ -9,6 +9,7 @@ class SyrChar:
                 ipa='',
                 isVowel=False, 
                 isModifier=False, 
+                isSiyameh=False,
                 isPunctuation=False,
                 majleanaLatin='',
                 majleanaIPA='',
@@ -33,6 +34,7 @@ class SyrChar:
         self.ipa = ipa
         self.isVowel = isVowel
         self.isModifier = isModifier
+        self.isSiyameh = isSiyameh
         self.majleanaLatin = majleanaLatin
         self.majleanaIPA = majleanaIPA
         self.matresLatin = matresLatin
@@ -72,6 +74,7 @@ SyrCharacters = {
     "SADEH": SyrChar(character = 'ܨ', name = 'SADEH', latin = 'ṣ', ipa = 'sˤ'),
     "QOP": SyrChar(character = 'ܩ', name = 'QOP', latin = 'q', ipa = 'q'),
     "RESH": SyrChar(character = 'ܪ', name = 'RESH', latin = 'r', ipa = 'r'),
+    "DOTLESS_RESH_DALATH": SyrChar(character = 'ܖ', name = 'DOTLESS_RESH_DALATH'),
     "SHIN": SyrChar(character = 'ܫ', name = 'SHIN', latin = 'š', ipa = 'ʃ', majleanaLatin = 'zh', majleanaIPA = 'ʒ'),
     "TAW": SyrChar(character = 'ܬ', name = 'TAW', latin = 't', ipa = 't', isRukakha = True, rukakhaLatin = 'th', rukakhaIPA = 'θ'),
     "PTAKHA": SyrChar(character = 'ܲ', name = 'PTAKHA', latin = 'a', ipa = 'a', isVowel = True),
@@ -83,7 +86,7 @@ SyrCharacters = {
     "RUKAKHA": SyrChar(character = '݂', name = 'RUKAKHA', isModifier = True),
     "MAJLEANA": SyrChar(character = '̰', name = 'MAJLEANA', isModifier = True),
     "TALQANA": SyrChar(character = '݇', name = 'TALQANA', isModifier = True),
-    "SIYAMEH": SyrChar(character = '̈', name = 'SIYAMEH', isModifier = True),
+    "SIYAMEH": SyrChar(character = '̈', name = 'SIYAMEH', isSiyameh = True),
     "RUKAKHA_PEH": SyrChar(character = '̮', name = 'RUKAKHA_PEH', isModifier = True),
 }
 
@@ -96,8 +99,8 @@ class Word:
         self.ipaStr = ''
         self.latinStr = ''
 
-    def MarkPlural(self, isPlural=True):
-        self.isPlural = plural
+    def SetPlural(self, isPlural=True):
+        self.isPlural = isPlural
 
     def AddAtoota(self, atoota):
         self.word.append(atoota)
@@ -109,10 +112,12 @@ class Word:
         self.latinStr = latinStr
     
 class Atoota:
-    def __init__(self, letter, vowel=EmptySyrChar, modifier=EmptySyrChar):
+    def __init__(self, letter, vowel=EmptySyrChar, modifier=EmptySyrChar, diphthong=EmptySyrChar, siyameh=EmptySyrChar):
         self.letter = letter
         self.vowel = vowel
         self.modifier = modifier
+        self.diphthong = diphthong
+        self.siyameh = siyameh
 
 def GetEntry(character):
     for _ch in SyrCharacters.keys():
@@ -130,14 +135,14 @@ def ProcessSyriacWord(milta):
     ipaString = ''
     latinString = ''
     
-    # TODO: Add diphtong case for Yodh Khwasa + vowel
+    # TODO: Support ܪ̈
 
     for previous, atoota, nxt in previous_and_next(milta.word):
         # silence the letter if it has a Talqana
         if atoota.modifier.name == 'TALQANA':
             continue
 
-        if atoota.modifier.name == 'SIYAMEH':
+        if atoota.siyameh.name == 'SIYAMEH':
             milta.SetPlural()
 
         ###
@@ -146,7 +151,13 @@ def ProcessSyriacWord(milta):
         if (atoota.modifier.name == 'RUKAKHA' or atoota.modifier.name == 'RUKAKHA_PEH') and atoota.letter.isRukakha:
             ipaString += atoota.letter.rukakhaIPA
             latinString += atoota.letter.rukakhaLatin
-            
+        
+        # Dotless Resh + Siyameh case
+        elif atoota.letter.name == 'DOTLESS_RESH_DALATH' and atoota.siyameh.name == 'SIYAMEH':
+            print("erfad")
+            ipaString += SyrCharacters["RESH"].ipa
+            latinString += SyrCharacters["RESH"].latin
+        
         elif atoota.modifier.name == 'MAJLEANA':
             ipaString += atoota.letter.majleanaIPA
             latinString += atoota.letter.majleanaLatin
@@ -173,6 +184,10 @@ def ProcessSyriacWord(milta):
 
             # Alap is preceded by a Ptakha, Zqappa, or either Zlama - take vocalization from previous atoota zowa
             elif nxt == None and (previous.vowel.name == "PTAKHA" or previous.vowel.name == "ZQAPPA" or previous.vowel.name == "ZLAMA_KIRYA" or previous.vowel.name == "ZLAMA_YARIKHA"):
+                continue
+
+            # Alap is preceded by a Ptakha, Zqappa, or either Zlama on a diphthong - take vocalization from previous atoota zowa
+            elif nxt == None and previous.vowel.name == 'KHWASA' and previous.letter.name == 'YODH' and (previous.diphthong.name == "PTAKHA" or previous.diphthong.name == "ZQAPPA" or previous.diphthong.name == "ZLAMA_KIRYA" or previous.diphthong.name == "ZLAMA_YARIKHA"):
                 continue
 
             # This is just an Alap
@@ -212,8 +227,13 @@ def ProcessSyriacWord(milta):
         ###
         if atoota.vowel.isVowel:
             if atoota.vowel.name == "KHWASA" or atoota.vowel.name == "RWAKHA":
-                # already handled in above cases
-                continue
+                # diphthong case
+                if atoota.letter.name == 'YODH' and atoota.diphthong != EmptySyrChar:
+                    ipaString += atoota.diphthong.ipa
+                    latinString += atoota.diphthong.latin
+                else:
+                    # already handled in above cases
+                    continue
             
             if atoota.letter.name == "ALAP":
                 continue
@@ -238,6 +258,8 @@ def ProcessSyriacString(syrStr):
     thisAtoota = EmptySyrChar
     thisVowel = EmptySyrChar
     thisModifier = EmptySyrChar
+    thisDiphthong = EmptySyrChar
+    thisSiyameh = EmptySyrChar
     
     for ch in syrStr:
         e = GetEntry(ch)
@@ -247,13 +269,15 @@ def ProcessSyriacString(syrStr):
             # new word at space
             if ch == ' ':
                 if (thisAtoota != EmptySyrChar):
-                    a = Atoota(thisAtoota, vowel=thisVowel, modifier=thisModifier)
+                    a = Atoota(thisAtoota, vowel=thisVowel, modifier=thisModifier, diphthong=thisDiphthong, siyameh=thisSiyameh)
                     word.AddAtoota(a)
 
                     # reset parsing state
                     thisAtoota = EmptySyrChar
                     thisVowel = EmptySyrChar
                     thisModifier = EmptySyrChar
+                    thisDiphthong = EmptySyrChar
+                    thisSiyameh = EmptySyrChar
                 
                 # convert word to IPA string
                 sentence.append(ProcessSyriacWord(word))
@@ -270,23 +294,30 @@ def ProcessSyriacString(syrStr):
                 if (thisModifier.name != 'TALQANA'):
                     thisModifier = e
             elif e.isVowel:
-                thisVowel = e
+                if thisAtoota.name == 'YODH' and thisVowel != EmptySyrChar and thisVowel.name == 'KHWASA':
+                    thisDiphthong = e
+                else:
+                    thisVowel = e
+            elif e.isSiyameh:
+                thisSiyameh = e
             else:
                 # this is a new letter/vowel/modifier combo - reset letter state
                 if (thisAtoota != EmptySyrChar):
-                    a = Atoota(thisAtoota, vowel=thisVowel, modifier=thisModifier)
+                    a = Atoota(thisAtoota, vowel=thisVowel, modifier=thisModifier, diphthong=thisDiphthong, siyameh=thisSiyameh)
                     word.AddAtoota(a)
 
                     # reset parsing state
                     thisAtoota = EmptySyrChar
                     thisVowel = EmptySyrChar
                     thisModifier = EmptySyrChar
+                    thisDiphthong = EmptySyrChar
+                    thisSiyameh = EmptySyrChar
                     
                 thisAtoota = e
     
     # process last word in sentence (or only word)
     if thisAtoota != EmptySyrChar:
-        a = Atoota(thisAtoota, vowel=thisVowel, modifier=thisModifier)
+        a = Atoota(thisAtoota, vowel=thisVowel, modifier=thisModifier, diphthong=thisDiphthong, siyameh=thisSiyameh)
         word.AddAtoota(a)
 
         sentence.append(ProcessSyriacWord(word))
@@ -309,7 +340,7 @@ def ProcessSyriacString(syrStr):
 def lambda_handler(event, context):
     # try:
     syrString = event["text"]
-    returnIPA = ProcessSyriacString(syrString);
+    returnIPA = ProcessSyriacString(syrString)
     # except:
     #     returnIPA = 'error'
     ret = {
@@ -346,5 +377,13 @@ context = None
 lambda_handler(ev, context)
 
 ev = {"text": "ܚܹܪܸܘܠܵܗ̇"}
+context = None
+lambda_handler(ev, context)
+
+ev = {"text": "ܨܵܒܪܝܼܵܐ"}
+context = None
+lambda_handler(ev, context)
+
+ev = {"text": "ܒܝܼܬ ܢܵܗܖ̈ܵܝܢ"}
 context = None
 lambda_handler(ev, context)
