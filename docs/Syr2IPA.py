@@ -154,7 +154,6 @@ def ProcessSyriacWord(milta):
         
         # Dotless Resh + Siyameh case
         elif atoota.letter.name == 'DOTLESS_RESH_DALATH' and atoota.siyameh.name == 'SIYAMEH':
-            print("erfad")
             ipaString += SyrCharacters["RESH"].ipa
             latinString += SyrCharacters["RESH"].latin
         
@@ -164,12 +163,12 @@ def ProcessSyriacWord(milta):
 
         elif atoota.letter.name == 'ALAP':
             # Alap with a vowel at the beginning of the word
-            if atoota.vowel.isVowel and previous == None:
+            if atoota.vowel.isVowel:
                 ipaString += atoota.vowel.ipa
                 latinString += atoota.vowel.latin
             
             # Alap shleeta with a Yodh/Waw Khwasa or Waw Rwakha following it
-            elif not atoota.vowel.isVowel and previous == None and nxt != None and (nxt.vowel.name == 'KHWASA' or nxt.vowel.name == 'RWAKHA'):
+            elif not atoota.vowel.isVowel and nxt != None and (nxt.vowel.name == 'KHWASA' or nxt.vowel.name == 'RWAKHA'):
                 if nxt.vowel.name == 'KHWASA' and nxt.letter.isKhwasa:
                     ipaString += nxt.letter.khwasaIPA
                     latinString += nxt.letter.khwasaLatin
@@ -385,5 +384,13 @@ context = None
 lambda_handler(ev, context)
 
 ev = {"text": "ܒܝܼܬ ܢܵܗܖ̈ܵܝܢ"}
+context = None
+lambda_handler(ev, context)
+
+ev = {"text": "ܡܝܼܟ݂ܵܐܝܼܠ"}
+context = None
+lambda_handler(ev, context)
+
+ev = {"text": "ܪܵܡܐܝܼܠ"}
 context = None
 lambda_handler(ev, context)
