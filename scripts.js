@@ -148,8 +148,8 @@ function process(uipa) {
         { 'src': /(\u0251)/g, 'dest': 'A:' }, //'A:' }, // Zqappa
         { 'src': /(t\u02e4)/g, 'dest': 't[:' }, // Theth
         { 'src': /(s\u02e4)/g, 'dest': 's' }, // Sadeh
-
-
+        { 'src': /(\u0295)/g, 'dest': 'a' }, // Eh - ʕ --> a
+        
         // edits arising from testing
         { 'src': /(\'k)+/g, 'dest': 'k\'' },  
         { 'src': /(\ː)+/g, 'dest': ':' },
