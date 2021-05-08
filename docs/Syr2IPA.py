@@ -88,6 +88,7 @@ SyrCharacters = {
     "TALQANA": SyrChar(character = '݇', name = 'TALQANA', isModifier = True),
     "SIYAMEH": SyrChar(character = '̈', name = 'SIYAMEH', isSiyameh = True),
     "RUKAKHA_PEH": SyrChar(character = '̮', name = 'RUKAKHA_PEH', isModifier = True),
+    "FEM_DOT": SyrChar(character = '̇', name = 'FEM_DOT', isModifier = True),
 }
 
 EmptySyrChar = SyrChar(character = '', name = 'EMPTY')
@@ -160,6 +161,11 @@ def ProcessSyriacWord(milta):
         elif atoota.modifier.name == 'MAJLEANA':
             ipaString += atoota.letter.majleanaIPA
             latinString += atoota.letter.majleanaLatin
+
+        # Heh at the end of a word
+        elif atoota.letter.name == 'HEH' and nxt == None:
+            if not atoota.vowel.isVowel and previous != None and previous.vowel.isVowel and (previous.vowel.name == "PTAKHA" or previous.vowel.name == "ZQAPPA" or previous.vowel.name == "ZLAMA_KIRYA" or previous.vowel.name == "ZLAMA_YARIKHA"):
+                pass
 
         elif atoota.letter.name == 'ALAP':
             # Alap with a vowel at the beginning of the word
@@ -392,5 +398,13 @@ context = None
 lambda_handler(ev, context)
 
 ev = {"text": "ܪܵܡܐܝܼܠ"}
+context = None
+lambda_handler(ev, context)
+
+ev = {"text": "ܒܵܗ݇ܣܹܗ ܕ"}
+context = None
+lambda_handler(ev, context)
+
+ev = {"text": "ܒܵܗ݇ܣܹܗ̇ ܕ"}
 context = None
 lambda_handler(ev, context)
