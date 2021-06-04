@@ -164,6 +164,7 @@ form,
 .select,
 button,
 .ipaout,
+.latinout,
 .audio {
     flex: 0 1 auto;
     margin: .75em auto;
@@ -190,6 +191,11 @@ h1 {
     color: darkred;
 }
 .ipaout {
+    display: block;
+    margin: 1.5em auto .5em;
+    color: black;
+}
+.latinout {
     display: block;
     margin: 1.5em auto .5em;
     color: black;
