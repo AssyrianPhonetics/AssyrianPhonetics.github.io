@@ -342,6 +342,9 @@ def ProcessSyriacString(syrStr):
 
     return ipaStr
 
+###########################################
+## Copy and paste above lines in AWS Lambda
+###########################################
 def lambda_handler(event, context):
     # try:
     syrString = event["text"]

@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     // hide share link until something to share
     // $('.ipaout').text("IPA: ʃlɑmɑ").show()
-    $('#share').show();
+    // $('#share').show();
 
 });
 
