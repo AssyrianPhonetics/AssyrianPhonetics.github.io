@@ -20,6 +20,14 @@
         meSpeak.loadVoice("en.json");
     </script>
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
 </head>
 
 <body>
@@ -46,8 +54,11 @@
                 <div class="ipaout">
                     <output type="text" id="ipaout" placeholder="gɑw lɪljɑ wgɑw imɑmɑ">
                 </div>
+                <div class="latinout">
+                    <output type="text" id="latinout" placeholder="">
+                </div>
 
-                <button id="submit" type="submit">Read</button>
+                <button id="submit" type="submit">Read Aloud</button>
             </form>
 
             <div class="audio">
@@ -58,12 +69,28 @@
         <aside id="about" class="info">
             <h2> Assyrian Phonetics Tool </h2>
             <p>
-                This tool is intended to be used for verifying word pronunciations. 
-                Let me know if something seems off. The meSpeak library is used to synthesize phoneme sounds locally from your browser. 
-                The Syriac text is converted to IPA via a script that runs in AWS (contact me if you'd like to use this script). TODO: make that script run browser-side.</p>
+                This tool can be used to supplement learning Assyrian. It is intended to be used for verifying word pronunciations and transliterations. 
+                There is a good chance there are bugs, if you see anything off you can let me know. 
+                <br/>
+                <br/>
+                This tool can be run completely offline. Both the Syriac-to-IPA conversion and the IPA-to-phoneme audio synthesis run on your machine locally without any remote connections. The text converter currently supports all standard atwateh, zoweh, rukakheh/qushayeh, majleaneh, siyameh, and feminizing dots.
+                <br/>
+                <b>Examples</b>
+                <br/>ܣܘܼܪܝܼܬ݂
+                <br/>ܡܵܐܬܵܐ
+                <br/>ܡܵܐܬ݂̈ܘܵܬ݂ܹܐ
+                <br/>ܟ̰ܘܼ ܡܸܢܕܝܼ
+                <br/>ܒܲܪ ܐ݇ܢܵܫܵܐ
+                <br/>ܒܝܼܬ ܢܵܗܖ̈ܵܝܢ
+                <br/>
+                <br/>
+                TODO: Western vowel support
+                <br/>
+                TODO: Work better without vowels
+            </p>
             <p>
-                Refer to <a href="https://upload.wikimedia.org/wikipedia/commons/8/8e/IPA_chart_2018.pdf"
-                target="_blank">the IPA chart</a> for IPA pronunciations. 
+                Refer to the <a href="https://upload.wikimedia.org/wikipedia/commons/8/8e/IPA_chart_2018.pdf"
+                target="_blank">IPA chart</a> for pronunciations. 
             </p>
 
             <h2></h2>
