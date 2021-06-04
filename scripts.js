@@ -628,8 +628,8 @@ function process(uipa) {
     ];
 
 
-    console.log("Passed in UIPA: " + uipa);
-    console.log("'" + uipa  + "'");
+    // console.log("Passed in UIPA: " + uipa);
+    // console.log("'" + uipa  + "'");
 
     unicodeString = "";
     for (var i = 0; i < uipa.length; i++)
