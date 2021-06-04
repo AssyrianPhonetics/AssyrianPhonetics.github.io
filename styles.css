@@ -96,8 +96,8 @@ body {
 }
 
 .box {
-    height: 300px;
-    width: 600px;
+    height: 800px;
+    width: 800px;
     margin: auto;
     overflow: visible;
     position: relative;
@@ -160,6 +160,8 @@ form {
 header,
 .error,
 form,
+.slidecontainer,
+.talkspeed,
 .input,
 .select,
 button,
@@ -185,6 +187,19 @@ h1 {
     margin: 0 auto;
 }
 
+.slider{
+    -webkit-appearance: none;
+     height:10px; 
+     width:100%; 
+     border-radius:15px; 
+     overflow:hidden; 
+     outline:none;
+}
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
 .error {
     display: none;
     margin: 1.5em auto .5em;
@@ -196,6 +211,11 @@ h1 {
     color: black;
 }
 .latinout {
+    display: block;
+    margin: 1.5em auto .5em;
+    color: black;
+}
+.talkspeed {
     display: block;
     margin: 1.5em auto .5em;
     color: black;

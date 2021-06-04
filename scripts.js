@@ -23,6 +23,9 @@
  * 
  */
 
+
+const wordlist = ["ܣܘܼܪܝܼܬ݂" ,"ܡܵܐܬܵܐ" ,"ܡܵܐܬ݂̈ܘܵܬ݂ܹܐ" ,"ܟ̰ܘܼ ܡܸܢܕܝܼ" ,"ܒܲܪ ܐ݇ܢܵܫܵܐ" ,"ܒܝܼܬ ܢܵܗܖ̈ܵܝܢ" ,"ܓܵܘ ܠܸܠܝܵܐ ܘܓܵܘ ܐܝܼܡܵܡܵܐ"]
+
 class SyrChar {
     constructor({character,
                 charname,
@@ -491,7 +494,7 @@ function InputToIPA(syr) {
     return ipaout
 }
 
-function process(uipa) {
+function process(uipa, speed) {
     // uipa = document.getElementById("ipa-input").value;
 
     // document.getElementById("download-button").disabled = true;
@@ -659,7 +662,7 @@ function process(uipa) {
     }
     // console.log("Converted UIPA: " + unicodeString);
 
-    spoken = meSpeak.speak('[['+unicodeString+']]', { 'rawdata': 'mime', 'speed': '100' });
+    spoken = meSpeak.speak('[['+unicodeString+']]', { 'rawdata': 'mime', 'speed': speed });
 
     if (spoken == null) {
         alert("An error occurred: speaking failed.");
@@ -675,9 +678,16 @@ $(document).ready(function() {
     setUpInfoAsides();
 
     // load from url params
+    var randomElement = wordlist[Math.floor(Math.random() * wordlist.length)];
+    console.log(randomElement)
+    $("#input-text").val(randomElement)
 
     loadUrlParams();
-
+    $('.talkspeed').text('Talk speed: 100').show()
+    var slider = document.getElementById("speedslider");
+    slider.oninput = function() {
+        $('.talkspeed').text('Talk speed: ' + slider.value).show()
+    }
     $('#submit').on('click', function(e) {
         e.preventDefault();
 
@@ -685,14 +695,14 @@ $(document).ready(function() {
         $('.latinout').hide()
         $('.error').hide()
 
-        var text = $('#ipa-text').val();
+        var text = $('#input-text').val();
         let ipaout = InputToIPA(text)
         syripa = ipaout[0]
         syrlatin = ipaout[1]
 
         if (syripa.length > 0)
         {
-            process(syripa)
+            process(syripa, slider.value)
 
             $('.ipaout').text("IPA: " + syripa).show()
             $('.latinout').text("Transliterated: " + syrlatin).show()
@@ -756,7 +766,7 @@ function loadUrlParams() {
     // parse/load params
     if (params.has('text')) {
         var text = decodeURIComponent(params.get('text'));
-        $('#ipa-text').val(text);
+        $('#input-text').val(text);
     }
 }
 

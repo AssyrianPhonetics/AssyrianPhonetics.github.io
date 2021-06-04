@@ -46,13 +46,19 @@
 
             <form accept-charset="utf-8 8859-1">
                 <span class="error"></span>
-
                 <div class="input">
-                    <input type="text" id="ipa-text" placeholder="ܓܵܘ ܠܸܠܝܵܐ ܘܓܵܘ ܐܝܼܡܵܡܵܐ"/>
+                    <input type="text" id="input-text" placeholder=""/>
                 </div>
 
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="300" value="100" class="slider" id="speedslider">
+                </div>
+                <div class="talkspeed">
+                    <output type="text" id="talkspeed" placeholder="100">
+                </div>
+                
                 <div class="ipaout">
-                    <output type="text" id="ipaout" placeholder="gɑw lɪljɑ wgɑw imɑmɑ">
+                    <output type="text" id="ipaout" placeholder="">
                 </div>
                 <div class="latinout">
                     <output type="text" id="latinout" placeholder="">
