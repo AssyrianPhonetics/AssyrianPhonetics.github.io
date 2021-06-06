@@ -494,7 +494,7 @@ function InputToIPA(syr) {
     return ipaout
 }
 
-function process(uipa, speed) {
+function process(uipa, speed, pitch) {
     // uipa = document.getElementById("ipa-input").value;
 
     // document.getElementById("download-button").disabled = true;
@@ -662,7 +662,7 @@ function process(uipa, speed) {
     }
     // console.log("Converted UIPA: " + unicodeString);
 
-    spoken = meSpeak.speak('[['+unicodeString+']]', { 'rawdata': 'mime', 'speed': speed });
+    spoken = meSpeak.speak('[['+unicodeString+']]', { 'rawdata': 'mime', 'speed': speed, 'pitch': pitch });
 
     if (spoken == null) {
         alert("An error occurred: speaking failed.");
@@ -670,7 +670,19 @@ function process(uipa, speed) {
 
     // document.getElementById("download-button").disabled = false;
     // console.log(spoken)
-    meSpeak.play(spoken);
+    meSpeak.play(spoken, function() {
+        console.log('sdsdsds')
+    });
+}
+
+function meSpeakCallback(success, id) {
+    console.log('here')
+    var speedslider = document.getElementById("speedslider")
+    speedslider.disabled = false
+
+    var pitchslider = document.getElementById("pitchslider")
+    pitchslider.disabled = false
+
 }
 
 $(document).ready(function() {
@@ -684,10 +696,19 @@ $(document).ready(function() {
 
     loadUrlParams();
     $('.talkspeed').text('Talk speed: 100').show()
-    var slider = document.getElementById("speedslider");
-    slider.oninput = function() {
-        $('.talkspeed').text('Talk speed: ' + slider.value).show()
+    $('.talkpitch').text('Talk Pitch: 50').show()
+    
+    var speedslider = document.getElementById("speedslider");
+    var pitchslider = document.getElementById("pitchslider");
+
+    speedslider.oninput = function() {
+        $('.talkspeed').text('Talk speed: ' + speedslider.value).show()
     }
+
+    pitchslider.oninput = function() {
+        $('.talkpitch').text('Talk pitch: ' + pitchslider.value).show()
+    }
+
     $('#submit').on('click', function(e) {
         e.preventDefault();
 
@@ -699,10 +720,10 @@ $(document).ready(function() {
         let ipaout = InputToIPA(text)
         syripa = ipaout[0]
         syrlatin = ipaout[1]
-
+        
         if (syripa.length > 0)
         {
-            process(syripa, slider.value)
+            process(syripa, speedslider.value, pitchslider.value)
 
             $('.ipaout').text("IPA: " + syripa).show()
             $('.latinout').text("Transliterated: " + syrlatin).show()
@@ -711,7 +732,7 @@ $(document).ready(function() {
         {
             $('.error').text("Error: Please enter valid Syriac text").show()
         }
-        
+
         reset()
     });
 });
