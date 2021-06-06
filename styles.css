@@ -96,8 +96,8 @@ body {
 }
 
 .box {
-    height: 800px;
-    width: 800px;
+    height: 600px;
+    width: 700px;
     margin: auto;
     overflow: visible;
     position: relative;
@@ -161,7 +161,6 @@ header,
 .error,
 form,
 .slidecontainer,
-.pitchslidecontainer,
 .talkspeed,
 .input,
 .select,
@@ -203,7 +202,7 @@ h1 {
 
 .error {
     display: none;
-    margin: 1.5em auto .5em;
+    margin: 1em auto 0em;
     color: darkred;
 }
 .ipaout {
@@ -213,12 +212,17 @@ h1 {
 }
 .latinout {
     display: block;
-    margin: 1.5em auto .5em;
+    margin: 1.5em auto .1em;
     color: black;
 }
 .talkspeed {
     display: block;
-    margin: 1.5em auto .5em;
+    margin: 0em auto 0em;
+    color: black;
+}
+.talkpitch {
+    display: block;
+    margin: 0em auto 0em;
     color: black;
 }
 
@@ -483,11 +487,11 @@ ul.social svg {
     fill: var(--font-color);
 }
 
-@media (max-height: 700px), (max-width: 700px) {
+@media (max-height: 600), (max-width: 600) {
     .box {
         height: 100vh;
         width: 100vw;
-        min-height: 600px;
+        min-height: 350px;
         min-width: 600px;
         margin: calc((100vh - 100vw) / 2) calc((100vw - 100vh) / 2);
     }

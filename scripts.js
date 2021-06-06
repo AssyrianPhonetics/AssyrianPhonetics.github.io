@@ -6431,9 +6431,9 @@ function processLiveText() {
     }
     else
     {
-        $('.ipaout').text("IPA: ").show()
-        $('.latinout').text("Transliterated: ").show()
-        $('.error').text("Error: Please enter valid Syriac text").show()
+        $('.ipaout').hide()
+        $('.latinout').hide()
+        $('.error').text("Please enter valid Syriac text").show()
     }
 }
 
@@ -6489,7 +6489,7 @@ $(document).ready(function() {
         }
         else
         {
-            $('.error').text("Error: Please enter valid Syriac text").show()
+            $('.error').text("Please enter valid Syriac text").show()
         }
 
         reset()

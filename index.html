@@ -40,13 +40,12 @@
 
         <div class="main">
             <header>
-                <h1>Assyrian Phonetic Tool</h1>
+                <h1><img src="alap.png" style="width:30px;height:30px;"></h1>
                 <a href="#about" class="info">About</a>
                 <!-- <a href="#settings" class="info">Settings</a> -->
             </header>
 
             <form accept-charset="utf-8 8859-1">
-                <span class="error"></span>
                 <div class="input">
                     <input type="text" id="input-text" placeholder="" oninput="processLiveText()"/>
                 </div>
@@ -61,19 +60,20 @@
                 <div class="latinout">
                     <output type="text" id="latinout" placeholder="">
                 </div>
+                <span class="error"></span>
                 <button id="submit" type="submit">Read Aloud</button>
 
             </form>
 
             <div class="slidecontainer">
-                <input type="range" min="1" max="300" value="100" class="slider" id="speedslider">
+                <input type="range" min="1" max="300" value="100" class="slider2" id="speedslider">
             </div>
             <div class="talkspeed">
                 <output type="text" id="talkspeed" placeholder="100">
             </div>
     
             <div class="pitchslidecontainer">
-                <input type="range" min="10" max="200" value="50" class="slider" id="pitchslider">
+                <input type="range" min="10" max="200" value="50" class="slider2" id="pitchslider">
             </div>
             <div class="talkpitch">
                 <output type="text" id="talkpitch" placeholder="50">
