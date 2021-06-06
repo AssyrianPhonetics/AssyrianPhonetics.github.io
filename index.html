@@ -58,6 +58,7 @@
                     <output type="text" id="ipaout" placeholder="">
                 </div>
                 <div class="latinout">
+                    <output type="text" id="latinlabel" placeholder="">
                     <output type="text" id="latinout" placeholder="">
                 </div>
                 <span class="error"></span>
@@ -90,7 +91,7 @@
                 There is a good chance there are bugs, if you see anything off you can let me know. 
                 <br/>
                 <br/>
-                This tool can be run completely offline. Both the Syriac-to-IPA conversion and the IPA-to-phoneme audio synthesis run on your machine locally without any remote connections. The text converter currently supports all standard atwateh, zoweh, rukakheh/qushayeh, majleaneh, siyameh, and feminizing dots.
+                Both the Syriac-to-IPA conversion and the IPA-to-phoneme audio synthesis run on your machine locally without any remote connections.
             </p>
             <p>
                 Refer to the <a href="https://upload.wikimedia.org/wikipedia/commons/8/8e/IPA_chart_2018.pdf"
@@ -115,22 +116,6 @@
             </p>
         </aside>
     </div>
-
-    <aside id="settings" class="info">
-        <div class="slidecontainer">
-            <input type="range" min="1" max="300" value="100" class="slider" id="speedslider">
-        </div>
-        <div class="talkspeed">
-            <output type="text" id="talkspeed" placeholder="100">
-        </div>
-
-        <div class="pitchslidecontainer">
-            <input type="range" min="10" max="200" value="50" class="slider" id="pitchslider">
-        </div>
-        <div class="talkpitch">
-            <output type="text" id="talkpitch" placeholder="50">
-        </div>
-    </aside>
 </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

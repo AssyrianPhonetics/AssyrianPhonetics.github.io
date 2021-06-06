@@ -6418,7 +6418,6 @@ function meSpeakCallback(success, id) {
 }
 
 function processLiveText() {
-    $('.error').hide()
     var text = $('#input-text').val();
     let ipaout = InputToIPA(text)
     syripa = ipaout[0]
@@ -6426,13 +6425,17 @@ function processLiveText() {
 
     if (syripa.length > 0)
     {
-        $('.ipaout').text("IPA: " + syripa).show()
+        $('.error').hide()
+        $('.ipaout').text(syripa).show()
+        $('.latinlabel').text("Transliterated:").show()
         $('.latinout').text("Transliterated: " + syrlatin).show()
     }
     else
     {
         $('.ipaout').hide()
         $('.latinout').hide()
+        $('.ipalabel').hide()
+        $('.latinlabel').hide()
         $('.error').text("Please enter valid Syriac text").show()
     }
 }
@@ -6471,10 +6474,6 @@ $(document).ready(function() {
     $('#submit').on('click', function(e) {
         e.preventDefault();
 
-        $('.ipaout').hide()
-        $('.latinout').hide()
-        $('.error').hide()
-
         var text = $('#input-text').val();
         let ipaout = InputToIPA(text)
         syripa = ipaout[0]
@@ -6483,16 +6482,22 @@ $(document).ready(function() {
         if (syripa.length > 0)
         {
             process(syripa, speedslider.value, pitchslider.value)
-
-            $('.ipaout').text("IPA: " + syripa).show()
+            $('.error').hide()
+            $('.ipalabel').text("IPA:").show()
+            $('.ipaout').text(syripa).show()
+            $('.latinlabel').text("Transliterated:").show()
             $('.latinout').text("Transliterated: " + syrlatin).show()
         }
         else
         {
+            $('.ipaout').hide()
+            $('.latinout').hide()
+            $('.ipalabel').hide()
+            $('.latinlabel').hide()
             $('.error').text("Please enter valid Syriac text").show()
         }
 
-        reset()
+        // reset()
     });
 });
 
