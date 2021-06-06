@@ -162,7 +162,6 @@ header,
 form,
 .slidecontainer,
 .pitchslidecontainer,
-.talkpitch,
 .talkspeed,
 .input,
 .select,
@@ -218,11 +217,6 @@ h1 {
     color: black;
 }
 .talkspeed {
-    display: block;
-    margin: 1.5em auto .5em;
-    color: black;
-}
-.talkslide {
     display: block;
     margin: 1.5em auto .5em;
     color: black;

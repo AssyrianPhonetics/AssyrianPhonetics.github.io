@@ -42,27 +42,18 @@
             <header>
                 <h1>Assyrian Phonetic Tool</h1>
                 <a href="#about" class="info">About</a>
+                <!-- <a href="#settings" class="info">Settings</a> -->
             </header>
 
             <form accept-charset="utf-8 8859-1">
                 <span class="error"></span>
                 <div class="input">
-                    <input type="text" id="input-text" placeholder=""/>
+                    <input type="text" id="input-text" placeholder="" oninput="processLiveText()"/>
                 </div>
 
-                <div class="slidecontainer">
-                    <input type="range" min="1" max="300" value="100" class="slider" id="speedslider">
-                </div>
-                <div class="talkspeed">
-                    <output type="text" id="talkspeed" placeholder="100">
-                </div>
-
-                <div class="pitchslidecontainer">
-                    <input type="range" min="10" max="200" value="50" class="slider" id="pitchslider">
-                </div>
-                <div class="talkpitch">
-                    <output type="text" id="talkpitch" placeholder="50">
-                </div>
+                <!-- <div class="input">
+                    <button id="random" type="submit">Random Word</button>
+                </div> -->
                 
                 <div class="ipaout">
                     <output type="text" id="ipaout" placeholder="">
@@ -70,13 +61,26 @@
                 <div class="latinout">
                     <output type="text" id="latinout" placeholder="">
                 </div>
-
                 <button id="submit" type="submit">Read Aloud</button>
+
             </form>
 
-            <div class="audio">
-                <!-- <a href id="share">Share</a> -->
+            <div class="slidecontainer">
+                <input type="range" min="1" max="300" value="100" class="slider" id="speedslider">
             </div>
+            <div class="talkspeed">
+                <output type="text" id="talkspeed" placeholder="100">
+            </div>
+    
+            <div class="pitchslidecontainer">
+                <input type="range" min="10" max="200" value="50" class="slider" id="pitchslider">
+            </div>
+            <div class="talkpitch">
+                <output type="text" id="talkpitch" placeholder="50">
+            </div>
+            <!-- <div class="audio">
+                <a href id="share">Share</a>
+            </div> -->
         </div>
 
         <aside id="about" class="info">
@@ -111,6 +115,23 @@
             </p>
         </aside>
     </div>
+
+    <aside id="settings" class="info">
+        <div class="slidecontainer">
+            <input type="range" min="1" max="300" value="100" class="slider" id="speedslider">
+        </div>
+        <div class="talkspeed">
+            <output type="text" id="talkspeed" placeholder="100">
+        </div>
+
+        <div class="pitchslidecontainer">
+            <input type="range" min="10" max="200" value="50" class="slider" id="pitchslider">
+        </div>
+        <div class="talkpitch">
+            <output type="text" id="talkpitch" placeholder="50">
+        </div>
+    </aside>
+</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="scripts.js"></script>
