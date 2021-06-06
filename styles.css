@@ -340,13 +340,13 @@ select.hidden {
 
 button {
     display: block;
-    border: 0;
+    border: 2px solid black;
     background: var(--main-color);
     color: var(--font-color);
     white-space: nowrap;
     text-decoration: none;
     cursor: pointer;
-    min-width: 50%;
+    min-width: 25%;
     padding: .5em 1em;
 }
 
