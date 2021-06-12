@@ -96,10 +96,10 @@ body {
 }
 
 .box {
-    height: 600px;
-    width: 700px;
+    height: 95%;
+    width: 100%;
     margin: auto;
-    overflow: visible;
+    overflow: scroll;
     position: relative;
 }
 
@@ -166,6 +166,7 @@ form,
 .select,
 button,
 .ipaout,
+.definition,
 .latinout,
 .audio {
     flex: 0 1 auto;
@@ -178,7 +179,7 @@ button,
 } */
 
 header {
-    margin: 1.25em auto;
+    margin: 0em auto;
 }
 
 h1 {
@@ -207,13 +208,21 @@ h1 {
 }
 .ipaout {
     display: block;
-    margin: 1.5em auto .5em;
+    margin: .5em auto .5em;
     color: black;
+    overflow: scroll;
+}
+.definition {
+    display: block;
+    margin: 0em auto .0em;
+    color: black;
+    font-size: small;
 }
 .latinout {
     display: block;
-    margin: 1.5em auto .1em;
+    margin: .5em auto .1em;
     color: black;
+    font-size: small;
 }
 .talkspeed {
     display: block;
@@ -344,7 +353,7 @@ select.hidden {
 
 button {
     display: block;
-    border: 2px solid black;
+    border: 1px solid black;
     background: var(--main-color);
     color: var(--font-color);
     white-space: nowrap;
@@ -434,7 +443,7 @@ aside.info {
     margin: 0em auto;
     height: 100vh;
     max-height: 100vh;
-    width: 600px;
+    width: 75%;
     padding: 0 2em;
     border-radius: 0;
     font-size: .8em;
@@ -487,12 +496,12 @@ ul.social svg {
     fill: var(--font-color);
 }
 
-@media (max-height: 600), (max-width: 600) {
+@media (max-height: 100%), (max-width: 100%) {
     .box {
         height: 100vh;
         width: 100vw;
-        min-height: 350px;
-        min-width: 600px;
+        min-height: 75%;
+        min-width: 75%;
         margin: calc((100vh - 100vw) / 2) calc((100vw - 100vh) / 2);
     }
 
@@ -521,7 +530,7 @@ ul.social svg {
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 75%) {
     .box {
         height: 100vw;
         width: 100vw;
@@ -532,7 +541,7 @@ ul.social svg {
     }
 }
 
-@media (max-height: 700px) {
+@media (max-height: 75%) {
     .box {
         height: 100vh;
         width: 100vh;

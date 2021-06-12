@@ -40,7 +40,8 @@
 
         <div class="main">
             <header>
-                <h1><img src="alap.png" style="width:30px;height:30px;"></h1>
+                <h1><button id="randomize" class="randomAlap" onClick="RandomizeTextBox()"><img src="alap.png" style="width:30px;height:30px;"></button></h1>
+
                 <a href="#about" class="info">About</a>
                 <!-- <a href="#settings" class="info">Settings</a> -->
             </header>
@@ -53,7 +54,9 @@
                 <!-- <div class="input">
                     <button id="random" type="submit">Random Word</button>
                 </div> -->
-                
+                <div class="definition">
+                    <output type="text" id="definition" placeholder="">
+                </div>
                 <div class="ipaout">
                     <output type="text" id="ipaout" placeholder="">
                 </div>
@@ -88,7 +91,7 @@
             <h2> Assyrian Phonetics Tool </h2>
             <p>
                 This tool can be used to supplement learning Assyrian. It is intended to be used for verifying word pronunciations and transliterations. 
-                There is a good chance there are bugs, if you see anything off you can let me know. 
+                There is a good chance there are bugs, if you see anything off you can let me know. Dictionary definitions are provided by AssyrianLanguages.org
                 <br/>
                 <br/>
                 Both the Syriac-to-IPA conversion and the IPA-to-phoneme audio synthesis run on your machine locally without any remote connections.
