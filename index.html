@@ -43,12 +43,13 @@
                 <h1><button id="randomize" class="randomAlap" onClick="RandomizeTextBox()"><img src="alap.png" style="width:30px;height:30px;"></button></h1>
 
                 <a href="#about" class="info">About</a>
-                <!-- <a href="#settings" class="info">Settings</a> -->
+                <a href="#settings" class="info">Settings</a>
+
             </header>
 
             <form accept-charset="utf-8 8859-1">
                 <div class="input">
-                    <input type="text" id="input-text" placeholder="" oninput="processLiveText()"/>
+                    <input type="text" style="direction: rtl;" id="input-text" placeholder="" oninput="processLiveText()"/>
                 </div>
 
                 <!-- <div class="input">
@@ -69,19 +70,7 @@
 
             </form>
 
-            <div class="slidecontainer">
-                <input type="range" min="1" max="300" value="100" class="slider2" id="speedslider">
-            </div>
-            <div class="talkspeed">
-                <output type="text" id="talkspeed" placeholder="100">
-            </div>
-    
-            <div class="pitchslidecontainer">
-                <input type="range" min="10" max="200" value="50" class="slider2" id="pitchslider">
-            </div>
-            <div class="talkpitch">
-                <output type="text" id="talkpitch" placeholder="50">
-            </div>
+            
             <!-- <div class="audio">
                 <a href id="share">Share</a>
             </div> -->
@@ -90,18 +79,14 @@
         <aside id="about" class="info">
             <h2> Assyrian Phonetics Tool </h2>
             <p>
-                This tool can be used to supplement learning Assyrian. It is intended to be used for verifying word pronunciations and transliterations. 
-                There is a good chance there are bugs, if you see anything off you can let me know. Dictionary definitions are provided by AssyrianLanguages.org
-                <br/>
-                <br/>
-                Both the Syriac-to-IPA conversion and the IPA-to-phoneme audio synthesis run on your machine locally without any remote connections.
+                This tool is intended to be used for verifying word pronunciations and transliterations. 
+                </br>
+                Dictionary definitions are provided by AssyrianLanguages.org
             </p>
             <p>
                 Refer to the <a href="https://upload.wikimedia.org/wikipedia/commons/8/8e/IPA_chart_2018.pdf"
                 target="_blank">IPA chart</a> for pronunciations. 
             </p>
-
-            <h2></h2>
             <p>
                 <ul class="social">
                     <li>
@@ -118,7 +103,39 @@
 
             </p>
         </aside>
+        <aside id="settings" class="info">
+            <h2> Settings </h2>
+            <p>
+                <div class="talkspeed">
+                    <output type="text" id="talkspeed" placeholder="100">
+                </div>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="300" value="100" id="speedslider">
+                </div>
+
+                <div class="talkpitch">
+                    <output type="text" id="talkpitch" placeholder="50">
+                </div>
+                <div class="pitchslidecontainer">
+                    <input type="range" min="10" max="200" value="50" id="pitchslider">
+                </div>
+                <div class="scriptdropdown">
+                    <label for="scriptname">Script:</label>
+                    <select name="scriptname" id="scriptname" onchange="DropdownSelect()">
+                        <option value="EastSyriacAdiabene">Eastern</option>
+                        <option value="EstrangeloNisibin,EstrangeloEdessa">Classical</option>
+                        <option value="SertoJerusalem,SertoUrhoy">Western</option>
+                    </select>
+                </div>
+                <div class="scriptex">
+                    <output type="text" id="scriptex">
+                </div>
+                <small>Meltho fonts must be installed to render the scripts as intended</small>
+            </p>        
+        </aside>
     </div>
+</div>
+</div>
 </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -166,17 +166,14 @@ form,
 .select,
 button,
 .ipaout,
+.scriptex,
 .definition,
 .latinout,
+.scriptdropdown,
 .audio {
     flex: 0 1 auto;
     margin: .75em auto;
 }
-
-/* .ipaout {
-    flex: 0 1 auto;
-    margin: .75em auto;
-} */
 
 header {
     margin: 0em auto;
@@ -190,7 +187,6 @@ h1 {
 
 .slider{
     -webkit-appearance: none;
-     height:10px; 
      width:100%; 
      border-radius:15px; 
      overflow:hidden; 
@@ -211,6 +207,15 @@ h1 {
     margin: .5em auto .5em;
     color: black;
     overflow: scroll;
+}
+.scriptex {
+    display: block;
+    margin: .25em auto .25em;
+    color: black;
+    overflow: scroll;
+    text-align: center;
+    font-size: 36pt;
+    padding:15px;
 }
 .definition {
     display: block;
@@ -235,6 +240,13 @@ h1 {
     color: black;
 }
 
+.scriptdropdown {
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
 
 form {
     flex-grow: none;
@@ -265,7 +277,8 @@ button {
     opacity: .55;
 } */
 input {
-    font-family: var(--monospace-font);
+    height: 1em;
+    font-size: 1.5em;
     width: calc(100% - 4.5ex);
 }
 .select {
@@ -371,19 +384,6 @@ button[disabled] {
     opacity: .5;
     cursor: not-allowed;
 }
-
-/* .ipaout {
-    position: relative;
-    height: 2em;
-    width: 75%;
-    margin-bottom: 1em;
-} */
-
-/* ipaout {
-    display: block;
-    margin: 1.5em auto .5em;
-    color: rgb(134, 20, 20);
-} */
 
 .audio {
     position: relative;

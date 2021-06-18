@@ -6106,16 +6106,26 @@ function RandomizeTextBox() {
     processLiveText()
 }
 
+function DropdownSelect() {
+    var scriptnamelist = document.getElementById("scriptname");  
+    var scriptselected = scriptnamelist.options[scriptnamelist.selectedIndex].value;
+    document.getElementById("input-text").style.fontFamily = scriptselected;
+    $('.scriptex')[0].style.fontFamily = scriptselected;
+}
+
 $(document).ready(function() {
+    $('.scriptex').text("ܐܒܓ").show();
+
     // set up asides
     setUpInfoAsides();
     setUpSettingAsides();
-
-    RandomizeTextBox()
+    DropdownSelect();
+    RandomizeTextBox();
 
     loadUrlParams();
+    
     $('.talkspeed').text('Talk speed: 100').show()
-    $('.talkpitch').text('Talk Pitch: 50').show()
+    $('.talkpitch').text('Talk pitch: 50').show()
     
     var speedslider = document.getElementById("speedslider");
     var pitchslider = document.getElementById("pitchslider");
