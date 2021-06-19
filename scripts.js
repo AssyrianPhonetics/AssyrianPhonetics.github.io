@@ -6109,8 +6109,37 @@ function RandomizeTextBox() {
 function DropdownSelect() {
     var scriptnamelist = document.getElementById("scriptname");  
     var scriptselected = scriptnamelist.options[scriptnamelist.selectedIndex].value;
-    document.getElementById("input-text").style.fontFamily = scriptselected;
-    $('.scriptex')[0].style.fontFamily = scriptselected;
+
+    switch (scriptselected) {
+        case "east":
+            fontfamily = "EastSyriacAdiabene"
+            fontlink = "Fonts/syrcomadiabene.woff"
+            break;
+
+        case "classical":
+            fontfamily = "EstrangeloNisibin"
+            fontlink = "Fonts/syrcomnisibin.woff"
+            break;
+
+        case "west":
+            fontfamily = "SertoJerusalem"
+            fontlink = "Fonts/syrcomjerusalem.woff"
+            break;
+        
+        default:
+            break;
+    }
+    document.getElementById("input-text").style.fontFamily = fontfamily;
+    $('.scriptex')[0].style.fontFamily = fontfamily;
+    var newStyle = document.createElement('style');
+    newStyle.appendChild(document.createTextNode("\
+            @font-face {\
+            font-family: " + fontfamily + ";\
+            src: url('" + fontlink + "');\
+}\
+"));
+
+document.head.appendChild(newStyle);
 }
 
 $(document).ready(function() {
