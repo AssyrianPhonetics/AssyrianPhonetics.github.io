@@ -1060,7 +1060,7 @@ const wordDictionary = {
 "ܦܲܠܵܚܵܐ": "the laborers",
 "ܦܵܠܚܹ̈ܐ ܫܒ݂ܘܿܩ ܡܸܢ ܐܲܚ̈ܝܕܹܐ ܘܦܵܩ̈ܘܿܕܹܐ": "soldiers except officers",
 "ܦܵܩܹܕ ܦܵܠܚܹ̈ܐ": "to hold a review of the troops",
-"8": "ܬܡܵܢܝܵܐ",
+"ܬܡܵܢܝܵܐ":"8",
 "ܫܲܦܘܼܕܵܐ ܚܵܕܘܿܪܵܐ": "a rotisserie",
 "ܡܲܚܕܸܪ ܥܲܦܪܵܐ": "to rake dirt/earth-clods",
 "ܡܲܚܕܸܪ ܪܹܫܵܬ݇ܚܬܵܐ": "to rummage",
