@@ -1,3 +1,8 @@
+<!-- 
+    @file index.html
+    @author Sargis S Yonan (sargis@yonan.org)
+    @date 1 March 2021
+-->
 
 <!DOCTYPE html>
 <html>
@@ -14,10 +19,10 @@
     <link href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     
-    <script type="text/javascript" src="mespeak.js"></script>
+    <script type="text/javascript" src="scripts/mespeak.js"></script>
     <script type="text/javascript">
-        meSpeak.loadConfig("mespeak_config.json");
-        meSpeak.loadVoice("en.json");
+        meSpeak.loadConfig("scripts/mespeak_config.json");
+        meSpeak.loadVoice("scripts/en.json");
     </script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -51,10 +56,6 @@
                 <div class="input">
                     <input type="text" style="direction: rtl;" id="input-text" placeholder="" oninput="processLiveText()"/>
                 </div>
-
-                <!-- <div class="input">
-                    <button id="random" type="submit">Random Word</button>
-                </div> -->
                 <div class="definition">
                     <output type="text" id="definition" placeholder="">
                 </div>
@@ -68,20 +69,12 @@
                 <span class="error"></span>
                 <button id="submit" type="submit">Read Aloud</button>
 
-            <!-- </form> -->
-
-            
-            <!-- <div class="audio">
-                <a href id="share">Share</a>
-            </div> -->
         </div>
 
         <aside id="about" class="info">
             <h2> Assyrian Phonetics Tool </h2>
             <p>
                 This tool is intended to be used for verifying word pronunciations and transliterations. 
-                </br>
-                Dictionary definitions are provided by AssyrianLanguages.org
             </p>
             <p>
                 Refer to the <a href="https://upload.wikimedia.org/wikipedia/commons/8/8e/IPA_chart_2018.pdf"
@@ -130,15 +123,16 @@
                 <div class="scriptex">
                     <output type="text" id="scriptex">
                 </div>
-                <small>Meltho fonts must be installed to render the scripts as intended</small>
             </p>        
         </aside>
     </div>
 </div>
 </div>
 </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="scripts.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/SyrParser.js"></script>
+    <script src="scripts/words.js"></script>
+    <script src="scripts/SynthesizeAssyrian.js"></script>
 </body>
 </html>
