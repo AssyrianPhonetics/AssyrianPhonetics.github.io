@@ -1,0 +1,109 @@
+.Header1 {
+    direction:rtl;
+    text-align: center;
+    color: rgb(109, 17, 17);
+    font-size: 4em;
+    padding: 0em;
+    font-family: "Estrangelo Nisibin";
+    src:url("fonts/syrcomnisibin.woff");
+}
+.Header2 {
+    direction:rtl;
+    padding: 0em;
+    text-align: center;
+    color: black;
+    font-size: 2em;
+    font-family: "Estrangelo Nisibin";
+    src:url("fonts/syrcomnisibin.woff");
+}
+
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased; 
+}
+
+.UIRootWordDisplay {
+    direction:rtl;
+    color: black;
+    padding-top: .5em;
+    font-size: 10em;
+    text-align: center;
+    font-family: "East Syriac Adiabene";
+    src:url("fonts/syrcomadiabene.woff");
+}
+
+.UIRootWordDefinition {
+    color: black;
+    font-size: 2em;
+    text-align: center;
+    padding: 1.1em;
+    font-family: Verdana,sans-serif
+}
+
+.UIRootWordTransliteration {
+    color: green;
+    font-size: 1.4em;
+    font-style: italic;
+    text-align: center;
+    font-family: Verdana,sans-serif
+}
+
+.button {
+    float: center;
+    padding-top: .6em;
+    padding-bottom: .6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-bottom: 1.5em;
+    font-size: 2.25em;
+    font-family: Verdana,sans-serif;
+    /* font-family: "East Syriac Adiabene";
+    src:url("fonts/syrcomadiabene.woff"); */
+}
+
+.UIRootSelector {
+    font-size: 1em;
+    text-align: center;
+    font-family: "East Syriac Adiabene";
+    src:url("fonts/syrcomadiabene.woff");
+}
+
+.UIDerivedWordListDefs {
+    font-family: Verdana,sans-serif   
+}
+
+.DerivedWordsTitleLabel {
+    font-family: Verdana,sans-serif;
+    padding-left: 3em;
+}
+
+.AnswerState {
+    font-family: Verdana,sans-serif;
+    text-align: center;
+}
+
+.NextButton {
+    font-family: Verdana,sans-serif;
+    text-align: center;
+    justify-content: center;
+}
+
+ul {
+    /* direction:rtl; */
+    /* padding-right: 3em; */
+    padding-left: 3em;
+    padding-bottom: 3em;
+    margin:0px;
+    /* text-align: right; */
+    font-family: Verdana,sans-serif,"East Syriac Adiabene";
+    src:url("fonts/syrcomadiabene.woff");
+    list-style-type: none;
+}

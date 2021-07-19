@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ܥܩܪܢܝܬܐ</title>
+</head>
+<body>
+    <div class="Header1">
+        <output type="text">ܥܩܪܢܝܬܐ</output>
+    </div>
+    <div class="Header2">
+        ܛܐܠܬܐ ܒܥܩܪܐ ܕܡܠ̈ܐ ܕܣܘܪܝܬ
+    </div>
+    <main>
+        <section class="UIRootWord">
+            <div class="UIRootWordDisplay">
+                <output type="text" id="UIRootWordDisplayID"></output>
+            </div>
+            <div class="UIRootWordTransliteration">
+                <output type="text" id="UIRootWordTransliterationID"></output>
+            </div>
+            <div class="UIRootWordDefinition">
+                <output type="text" id="UIRootWordDefinitionID"></output>
+            </div>
+            <div class="AnswerState">
+                <output type="text" id="AnswerState"></output>
+            </div>
+            <section class=UIAnswerButtonGroup>
+                <div class="UIRootSelect">
+                    <button class="button" id="ButtonA"></button>
+                    </br>
+                    <button class="button" id="ButtonB"></button>
+                    </br>
+                    <button class="button" id="ButtonC"></button>
+                    </br>
+                    <button class="button" id="ButtonD"></button>
+                  </div>
+            </section>
+
+            <div class="DerivedWordsTitleLabel">
+                <output type="text" id="DerivedWordsTitleLabel">Derived Words</output>
+            </div>
+
+            <div id="UIDerivedWordListID">
+                <ul id="UIDerivedWordsList"></ul>
+            </div>
+            <div id="UIDerivedWordListDefs">
+                <ul id="UIDerivedWordsListDefinitions"></ul>
+            </div>
+            
+            <div id="NextButton">
+                <button class="button" id="NextButton">Next</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="scripts/SyrParser.js"></script>
+<script src="scripts/main.js"></script>
