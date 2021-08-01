@@ -13,6 +13,7 @@ var randomProperty = function (obj) {
 };
 
 function processLiveText() {
+    $("#input-text").attr("placeholder", '')
     var text = $('#input-text').val();
     let ipaout = InputToIPA(text)
     syripa = ipaout[0]
@@ -46,10 +47,19 @@ function processLiveText() {
     }
 }
 
-function RandomizeTextBox() {
+function RandomizeTextBox(placeholder) {
     var randomElement = randomProperty(wordDictionary)
-    $("#input-text").val(randomElement)
-    processLiveText()
+    if (placeholder) {
+        console.log('sdsdss')
+        $("#input-text").attr("placeholder", randomElement)
+        $('#definition').text('\n').show()
+        $('#ipaout').text('\n').show()
+        $('#latinout').text('\n').show()
+        $('#latinlabel').text('\n').show()
+    } else {
+        $("#input-text").val(randomElement)
+        processLiveText()
+    }
 }
 
 function DropdownSelect() {
@@ -95,7 +105,7 @@ $(document).ready(function() {
     setUpInfoAsides();
     setUpSettingAsides();
     DropdownSelect();
-    RandomizeTextBox();
+    RandomizeTextBox(true);
 
     loadUrlParams();
     

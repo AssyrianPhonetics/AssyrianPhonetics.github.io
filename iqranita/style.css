@@ -36,7 +36,7 @@ body {
     padding-top: .5em;
     font-size: 10em;
     text-align: center;
-    font-family: "East Syriac Adiabene";
+    font-family: EastSyriacAdiabene;
     src:url("fonts/syrcomadiabene.woff");
 }
 
