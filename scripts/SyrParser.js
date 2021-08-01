@@ -6,11 +6,13 @@
  * @date 1 March 2021
  */
 
-class SyrChar {
+ class SyrChar {
     constructor({character,
                 charname,
                 latin='',
                 ipa='',
+                westlatin='',
+                westipa='',
                 isVowel=false, 
                 isModifier=false, 
                 isSiyameh=false,
@@ -19,6 +21,8 @@ class SyrChar {
                 majleanaIPA='',
                 matresLatin='',
                 matresIPA='',
+                westmatresLatin='',
+                westmatresIPA='',
                 isRukakha=false,
                 rukakhaLatin='',
                 rukakhaIPA='',
@@ -28,6 +32,7 @@ class SyrChar {
                 isKhwasa=false,
                 khwasaLatin='',
                 khwasaIPA='',
+                isWestern=false,
                 khwasaSecondaryLatin='',
                 khwasaSecondaryIPA=''})
     {
@@ -35,6 +40,8 @@ class SyrChar {
         this.charname = charname
         this.latin = latin
         this.ipa = ipa
+        this.westlatin = westlatin
+        this.westipa = westipa
         this.isVowel = isVowel
         this.isModifier = isModifier
         this.isSiyameh = isSiyameh
@@ -42,6 +49,8 @@ class SyrChar {
         this.majleanaIPA = majleanaIPA
         this.matresLatin = matresLatin
         this.matresIPA = matresIPA
+        this.westmatresLatin = westmatresLatin
+        this.westmatresIPA = westmatresIPA
         this.isPunctuation = isPunctuation
         this.isRukakha = isRukakha
         this.rukakhaLatin = rukakhaLatin
@@ -52,6 +61,7 @@ class SyrChar {
         this.isKhwasa = isKhwasa
         this.khwasaLatin = khwasaLatin
         this.khwasaIPA = khwasaIPA
+        this.isWestern = isWestern
         this.khwasaSecondaryLatin = khwasaSecondaryLatin
         this.khwasaSecondaryIPA = khwasaSecondaryIPA
     }
@@ -59,12 +69,12 @@ class SyrChar {
 
 const SyrCharacters = {
     // consonants
-    "ALAP": new SyrChar({character: 'ܐ', charname: 'ALAP', latin:'a', ipa: 'ʔ', matresLatin: 'a', matresIPA: 'ɑ'}),
+    "ALAP": new SyrChar({character: 'ܐ', charname: 'ALAP', latin:'a', ipa: 'ʔ', matresLatin: 'a', matresIPA: 'ɑ', westlatin:'o', westipa: 'ʔ', westmatresLatin: 'o', westmatresIPA: 'o'}),
     "BETH": new SyrChar({character: 'ܒ', charname: 'BETH', latin: 'b', ipa: 'b', matresLatin: 'b\'', matresIPA: 'b', isRukakha: true, rukakhaLatin: 'w', rukakhaIPA: 'w'}),
     "GAMMAL": new SyrChar({character: 'ܓ', charname: 'GAMMAL', latin: 'g', ipa: 'g', majleanaLatin: 'j', majleanaIPA: 'dʒ', isRukakha: true, rukakhaLatin: 'gh', rukakhaIPA: 'ɣ'}),
     "DALATH": new SyrChar({character: 'ܕ', charname: 'DALATH', latin: 'd', ipa: 'd', isRukakha: true, rukakhaLatin: 'dh', rukakhaIPA: 'ð'}),
     "HEH": new SyrChar({character: 'ܗ', charname: 'HEH', latin: 'h', ipa: 'h'}),
-    "WAW": new SyrChar({character: 'ܘ', charname: 'WAW', latin: 'w', ipa: 'w', matresLatin: 'o\'', matresIPA: 'o', isRwakha: true, rwakhaLatin: 'o', rwakhaIPA: 'o', isKhwasa: true, khwasaLatin: 'u', khwasaIPA: 'u'}),
+    "WAW": new SyrChar({character: 'ܘ', charname: 'WAW', latin: 'w', ipa: 'w', matresLatin: 'o\'', matresIPA: 'o', westlatin: 'u', westipa: 'u', westmatresLatin: 'w', westmatresIPA: 'w', isRwakha: true, rwakhaLatin: 'o', rwakhaIPA: 'o', isKhwasa: true, khwasaLatin: 'u', khwasaIPA: 'u',}),
     "ZAIN": new SyrChar({character: 'ܙ', charname: 'ZAIN', latin: 'z', ipa: 'z', majleanaLatin: 'zh', majleanaIPA: 'ʒ'}),
     "KHETH": new SyrChar({character: 'ܚ', charname: 'KHETH', latin: 'kh', ipa: 'x'}),
     "THETH": new SyrChar({character: 'ܛ', charname: 'THETH', latin: 'ṭ', ipa: 'tˤ'}),
@@ -90,18 +100,41 @@ const SyrCharacters = {
     "ZLAMA_YARIKHA": new SyrChar({character: 'ܹ', charname: 'ZLAMA_YARIKHA', latin: 'eh', ipa: 'e', isVowel: true}),
     "KHWASA": new SyrChar({character: 'ܼ', charname: 'KHWASA', isVowel: true}),
     "RWAKHA": new SyrChar({character: 'ܿ', charname: 'RWAKHA', isVowel: true}),
+    "PTHAHA_ABOVE": new SyrChar({character: 'ܰ', charname: 'PTHAHA', latin: 'a', ipa: 'a', isWestern: true, isVowel: true}),
+    "PTHAHA_BELOW": new SyrChar({character: 'ܱ', charname: 'PTHAHA', latin: 'a', ipa: 'a', isWestern: true, isVowel: true}),
+    "ZQAPHA_ABOVE": new SyrChar({character: 'ܳ', charname: 'ZQAPHA', latin: 'o', ipa: 'o', isWestern: true, isVowel: true}),
+    "ZQAPHA_BELOW": new SyrChar({character: 'ܴ', charname: 'ZQAPHA', latin: 'o', ipa: 'o', isWestern: true, isVowel: true}),
+    "RWASA_ABOVE": new SyrChar({character: 'ܶ', charname: 'RWASA', latin: 'e', ipa: 'e', isWestern: true, isVowel: true}),
+    "RWASA_BELOW": new SyrChar({character: 'ܷ', charname: 'RWASA', latin: 'e', ipa: 'e', isWestern: true, isVowel: true}),
+    "HWASA_ABOVE": new SyrChar({character: 'ܺ', charname: 'HWASA', latin: 'i', ipa: 'ɪ', isWestern: true, isVowel: true}),
+    "HWASA_BELOW": new SyrChar({character: 'ܻ', charname: 'HWASA', latin: 'i', ipa: 'ɪ', isWestern: true, isVowel: true}),
+    "ESASA_ABOVE": new SyrChar({character: 'ܽ', charname: 'ESASA', latin: 'u', ipa: 'u', isWestern: true, isVowel: true}),
+    "ESASA_BELOW": new SyrChar({character: 'ܾ', charname: 'ESASA', latin: 'u', ipa: 'u', isWestern: true, isVowel: true}),
     // modifiers
     "RUKAKHA": new SyrChar({character: '݂', charname: 'RUKAKHA', isModifier: true}),
     "MAJLEANA": new SyrChar({character: '̰', charname: 'MAJLEANA', isModifier: true}),
+    "MAJLEANA_ABOVE": new SyrChar({character: '̃', charname: 'MAJLEANA', isModifier: true}),
     "TALQANA": new SyrChar({character: '݇', charname: 'TALQANA', isModifier: true}),
+    "TALQANA_BELOW": new SyrChar({character: '݈', charname: 'TALQANA', isModifier: true}),
     "SIYAMEH": new SyrChar({character: '̈', charname: 'SIYAMEH', isSiyameh: true}),
     "RUKAKHA_PEH": new SyrChar({character: '̮', charname: 'RUKAKHA_PEH', isModifier: true}),
     "FEM_DOT": new SyrChar({character: '̇', charname: 'FEM_DOT', isModifier: true}),
     // Turoyo/Garshuni
-    "GAMMAL_GARSHUNI": new SyrChar({character: 'ܔ', charname: 'GAMMAL_GARSHUNI', latin: 'j', ipa: 'dʒ'}),
+    "GAMMAL_GARSHUNI": new SyrChar({character: 'ܔ', charname: 'GAMMAL_GARSHUNI', latin: 'j', ipa: 'dʒ', isWestern: true}),
 }
 
 const EmptySyrChar = new SyrChar({character: '', charname: 'EMPTY'})
+
+function IsWordWestern(milta) {
+    for (var i = 0; i < milta.word.length; i++) {
+        if (milta.word[i].letter.isWestern || milta.word[i].vowel.isWestern ||
+            milta.word[i].modifier.isWestern || milta.word[i].diphthong.isWestern) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 class Word {
     constructor() {
@@ -155,11 +188,180 @@ function GetEntry(character)
     return EmptySyrChar
 }
 
+function ProcessWesternSyriacWord(milta) {
+    var ipaString = ''
+    var latinString = ''
+    for (var i = 0; i < milta.word.length; i++) {
+        var previous = null
+        var atoota = milta.word[i]
+        var nxt = null
+
+        if (i > 0)
+        {
+            previous = milta.word[i - 1]
+        }
+        if (i < milta.word.length - 1)
+        {
+            nxt = milta.word[i + 1]
+        }
+
+        // silence the letter if it has a Talqana
+        if (atoota.modifier.charname == 'TALQANA')
+        {
+            continue
+        }
+
+        if (atoota.siyameh.charname == 'SIYAMEH')
+        {
+            milta.SetPlural({isPlural: true})
+        }
+
+        /*
+         * Decide Base Letter Sound
+         */
+        if ((atoota.modifier.charname == 'RUKAKHA' || atoota.modifier.charname == 'RUKAKHA_PEH') && atoota.letter.isRukakha)
+        {
+             ipaString += atoota.letter.rukakhaIPA
+             latinString += atoota.letter.rukakhaLatin
+        }
+
+        // Dotless Resh + Siyameh case
+        else if (atoota.letter.charname == 'DOTLESS_RESH_DALATH' && atoota.siyameh.charname == 'SIYAMEH')
+        {
+            ipaString += SyrCharacters["RESH"].ipa
+            latinString += SyrCharacters["RESH"].latin
+        }
+
+        else if (atoota.modifier.charname == 'MAJLEANA')
+        {
+            ipaString += atoota.letter.majleanaIPA
+            latinString += atoota.letter.majleanaLatin
+        }
+
+        // Heh at the end of a word
+        else if (atoota.letter.charname == 'HEH' && nxt == null)
+        {
+            if (!atoota.vowel.isVowel && previous != null && previous.vowel.isVowel && previous.vowel.isWestern)
+            {
+            }
+        }
+
+        else if (atoota.letter.charname == 'WAW' && atoota.vowel.isVowel && atoota.vowel.isWestern) {
+            if (atoota.vowel.charname == 'ESASA') {
+                ipaString += atoota.vowel.ipa
+                latinString += atoota.vowel.latin
+            } else {
+                ipaString += atoota.letter.westmatresIPA
+                latinString += atoota.letter.westmatresLatin
+            }
+        }
+
+        else if (atoota.letter.charname == 'ALAP')
+        {
+            // Alap with a vowel at the beginning of the word
+            if (atoota.vowel.isVowel)
+            {
+                ipaString += atoota.vowel.ipa
+                latinString += atoota.vowel.latin
+            }
+
+            // Alap shleeta with a Yodh/Waw Khwasa or Waw Rwakha following it
+            else if (!atoota.vowel.isVowel && nxt != null && nxt.letter && (nxt.letter.isKhwasa || nxt.letter.isRwakha))
+            {
+                if (nxt.letter.isKhwasa || nxt.letter.isRwakha)
+                {
+                    if (atoota.letter.westipa != '') {
+                        ipaString += atoota.letter.westipa
+                        latinString += atoota.letter.westlatin
+                    } else {
+                        ipaString += atoota.letter.ipa
+                        latinString += atoota.letter.latin
+                    }
+                }
+            }
+
+            // Alap at the beginning of a word - use special case IPA
+            else if (previous == null)
+            {
+                ipaString += atoota.letter.westmatresIPA
+                latinString += atoota.letter.westmatresLatin
+            }
+
+            // Alap is preceded by a Ptakha, Zqappa, or either Zlama - take vocalization from previous atoota zowa
+            else if (nxt == null && previous.vowel.isWestern)
+            {
+                continue
+            }
+
+            // Alap is preceded by a Ptakha, Zqappa, or either Zlama on a diphthong - take vocalization from previous atoota zowa
+            else if (nxt == null && previous.vowel.charname == 'KHWASA' && previous.letter.charname == 'YODH' && previous.diphthong.isWestern)
+            {
+                continue
+            }
+
+            // This is just an Alap
+            else
+            {
+                ipaString += atoota.letter.westipa
+                latinString += atoota.letter.westlatin
+            }
+        }
+
+        // no special case
+        else
+        {
+            if (atoota.letter.westipa != '') {
+                ipaString += atoota.letter.westipa
+                latinString += atoota.letter.westlatin
+            } else {
+                ipaString += atoota.letter.ipa
+                latinString += atoota.letter.latin
+            }
+        }
+
+        /*
+         * Adjust for vowel if present
+         */
+        if (atoota.vowel.isVowel)
+        {
+            if (atoota.letter.charname == "ALAP")
+            {
+                continue
+            }
+            if (atoota.letter.charname == "WAW" && atoota.vowel.charname == "ESASA")
+            {
+                continue
+            }
+            // standard vowel case
+            else
+            {
+                if (atoota.vowel.westipa != '') {
+                    ipaString += atoota.vowel.westipa
+                    latinString += atoota.vowel.westlatin
+                } else {
+                    ipaString += atoota.vowel.ipa
+                    latinString += atoota.vowel.latin
+                }
+            }
+        }
+        console.log(ipaString)
+    }
+
+    milta.SetIPA(ipaString)
+    milta.SetLatin(latinString)
+
+    return milta 
+}
+
 
 function ProcessSyriacWord(milta)
 {
     var ipaString = ''
     var latinString = ''
+
+    if (IsWordWestern(milta)) {
+        return ProcessWesternSyriacWord(milta)
+    }
 
     for (var i = 0; i < milta.word.length; i++) {
         var previous = null
@@ -263,8 +465,8 @@ function ProcessSyriacWord(milta)
             // This is just an Alap
             else
             {
-                ipaString += atoota.letter.ipa
-                latinString += atoota.letter.latin
+                ipaString += atoota.letter.westipa
+                latinString += atoota.letter.westlatin
             }
         }
 
