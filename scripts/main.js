@@ -50,12 +50,7 @@ function processLiveText() {
 function RandomizeTextBox(placeholder) {
     var randomElement = randomProperty(wordDictionary)
     if (placeholder) {
-        console.log('sdsdss')
         $("#input-text").attr("placeholder", randomElement)
-        $('#definition').text('\n').show()
-        $('#ipaout').text('\n').show()
-        $('#latinout').text('\n').show()
-        $('#latinlabel').text('\n').show()
     } else {
         $("#input-text").val(randomElement)
         processLiveText()
@@ -94,7 +89,7 @@ function DropdownSelect() {
             src: url('" + fontlink + "');\
             }\
     "));
-
+    document.getElementById("iqralink").style.fontFamily = fontfamily;
     document.head.appendChild(newStyle);
 }
 

@@ -33,7 +33,7 @@ body {
 .UIRootWordDisplay {
     direction:rtl;
     color: black;
-    padding-top: .5em;
+    padding-top: .0em;
     font-size: 10em;
     text-align: center;
     font-family: EastSyriacAdiabene;
@@ -62,11 +62,21 @@ body {
     padding-bottom: .6em;
     padding-left: 1em;
     padding-right: 1em;
-    margin-bottom: 1.5em;
+    margin-bottom: .1em;
     font-size: 2.25em;
     font-family: Verdana,sans-serif;
     /* font-family: "East Syriac Adiabene";
     src:url("fonts/syrcomadiabene.woff"); */
+}
+
+.UIScoreLabel {
+    text-align: center;
+    font-size: 1.5em;
+    padding-top: .6em;
+    padding-bottom: 0em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-bottom: 0em;
 }
 
 .UIRootSelector {

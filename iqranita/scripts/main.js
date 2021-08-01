@@ -9,7 +9,15 @@ const Btn = {
 var ThisCorrectEntry = null;
 var ThisCorrectBtn = null;
 
+var score = 0;
+var firstTry = true;
+
 var rootsData = null;
+
+function UpdateScore(scoreDiff) {
+    score += scoreDiff;
+    document.getElementById('UIScoreLabel').innerText = 'Score: ' + score.toString()
+}
 
 function Reset() {
     document.getElementById("UIRootWordDisplayID").innerText = '';
@@ -187,12 +195,21 @@ function SelectAnswer(selection) {
             list.appendChild(li);
         }
 
+        if (firstTry) {
+            UpdateScore(150);
+        } else {
+            UpdateScore(100);
+        }
+
         document.getElementById('DerivedWordsTitleLabel').hidden = false;
         document.getElementById('NextButton').hidden = false;
-
+        firstTry = true;
     } else {
         document.getElementById('AnswerState').style.color = 'red';
         document.getElementById('AnswerState').innerText = 'Incorrect, try again.'
+
+        UpdateScore(-10);
+        firstTry = false;
     }
 }
 
@@ -205,6 +222,7 @@ function InitUI() {
     document.getElementById("ButtonD").onclick = function() {SelectAnswer(Btn.D);};
 
     document.getElementById('NextButton').onclick = function() {NewRound();};
+    UpdateScore(0);
 
     NewRound();
 }
