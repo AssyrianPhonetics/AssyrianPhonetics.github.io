@@ -256,6 +256,10 @@ function ProcessWesternSyriacWord(milta) {
             }
         }
 
+        else if (atoota.letter.charname == 'WAW' && previous != null && previous.vowel.isVowel && previous.vowel.charname == 'ESASA' && !atoota.vowel.isVowel) {
+           continue
+        }
+
         else if (atoota.letter.charname == 'ALAP')
         {
             // Alap with a vowel at the beginning of the word
@@ -344,7 +348,6 @@ function ProcessWesternSyriacWord(milta) {
                 }
             }
         }
-        console.log(ipaString)
     }
 
     milta.SetIPA(ipaString)

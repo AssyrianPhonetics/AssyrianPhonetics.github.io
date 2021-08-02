@@ -7,6 +7,8 @@
  * @date 1 March 2021
  */
 
+var westernMode = false;
+
 var randomProperty = function (obj) {
     var keys = Object.keys(obj);
     return keys[ keys.length * Math.random() << 0];
@@ -36,8 +38,13 @@ function processLiveText() {
         $('.error').text("Please enter valid Syriac text").show()
     }
 
-    def = wordDictionary[text]
-    if (wordDictionary[text] != undefined)
+    if (westernMode) {
+        def = WesternWordDictionary[text]
+    } else {
+        def = wordDictionary[text]
+    }
+
+    if (def != undefined)
     {
         $('.definition').text(def).show()
     }
@@ -48,7 +55,12 @@ function processLiveText() {
 }
 
 function RandomizeTextBox(placeholder) {
-    var randomElement = randomProperty(wordDictionary)
+    if (westernMode) {
+        var randomElement = randomProperty(WesternWordDictionary)
+    } else {
+        var randomElement = randomProperty(wordDictionary)
+    }
+
     if (placeholder) {
         $("#input-text").attr("placeholder", randomElement)
     } else {
@@ -61,6 +73,7 @@ function DropdownSelect() {
     var scriptnamelist = document.getElementById("scriptname");  
     var scriptselected = scriptnamelist.options[scriptnamelist.selectedIndex].value;
 
+    westernMode = false;
     switch (scriptselected) {
         case "east":
             fontfamily = "EastSyriacAdiabene"
@@ -75,6 +88,7 @@ function DropdownSelect() {
         case "west":
             fontfamily = "SertoJerusalem"
             fontlink = "../fonts/syrcomjerusalem.woff"
+            westernMode = true;
             break;
         
         default:
@@ -119,7 +133,12 @@ $(document).ready(function() {
     }
 
     $('#random').on('click', function(e) {
-        var randomElement = wordDictionary[Math.floor(Math.random() * wordDictionary.length)];
+        if (westernMode) {
+            var randomElement = WesternWordDictionary[Math.floor(Math.random() * WesternWordDictionary.length)];
+        } else {
+            var randomElement = wordDictionary[Math.floor(Math.random() * wordDictionary.length)];
+        }
+        
         $("#input-text").val(randomElement)
         processLiveText()
     });
