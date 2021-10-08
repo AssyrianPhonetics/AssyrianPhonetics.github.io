@@ -90,10 +90,11 @@ function SetFont(scriptselected) {
         default:
             break;
     }
+
     document.getElementById("UIRootWordDisplayID").style.fontFamily = fontfamily;
-    document.getElementById("UIDerivedWordListID").style.fontFamily = fontfamily;
-    document.getElementById("UIDerivedWordListID").style.fontSize = "xx-large";
-    
+    document.getElementById("UIDerivedWordsList").style.fontFamily = fontfamily;
+    document.getElementById("UIDerivedWordListDefs").style.fontFamily = fontfamily;
+    document.getElementById("UIDerivedWordListID").style.fontSize = "xx-large";    
     var newStyle = document.createElement('style');
     newStyle.appendChild(document.createTextNode("\
             @font-face {\
@@ -101,6 +102,7 @@ function SetFont(scriptselected) {
             src: url('" + fontlink + "');\
             }\
     "));
+    document.head.appendChild(newStyle);
 }
 
 function StoreRoundState(CorrectEntry, CorrectBtn) {
@@ -196,6 +198,7 @@ function SelectAnswer(selection) {
             li = document.createElement("li");
             li.innerText = defentry;
             li.style.fontSize = ".75em";
+            li.style.fontFamily = "Verdana,sans-serif";
             list.appendChild(li);
         }
 
@@ -242,6 +245,21 @@ function NewGame() {
 }
 
 function InitUI() {
+    fontfamily = "EstrangeloNisibin"
+    fontlink = "../fonts/syrcomnisibin.woff"
+    document.getElementById("Header1").style.fontFamily = fontfamily;
+    document.getElementById("Header2").style.fontFamily = fontfamily;
+    document.getElementById("ButtonStartGame").style.fontFamily = fontfamily;
+
+    var newStyle = document.createElement('style');
+    newStyle.appendChild(document.createTextNode("\
+            @font-face {\
+            font-family: " + fontfamily + ";\
+            src: url('" + fontlink + "');\
+            }\
+    "));
+    document.head.appendChild(newStyle);
+
     SetFont("east");
 
     UISetHidden(true);
