@@ -30,13 +30,15 @@ function Reset() {
 
     document.getElementById('DerivedWordsTitleLabel').hidden = true;
     document.getElementById('NextButton').hidden = true;
+    document.getElementById("UIRootWordDefinition").hidden = true;
+    document.getElementById("UIRootWordDefinitionID").hidden = true;
+    document.getElementById("DerivedWordsTitleLabel").hidden = true;
 
+    document.getElementById("UIAnswerButtonGroup").hidden = false;
     document.getElementById("ButtonA").hidden = false;
     document.getElementById("ButtonB").hidden = false;
     document.getElementById("ButtonC").hidden = false;
     document.getElementById("ButtonD").hidden = false;
-
-    document.getElementById("UIRootWordDefinitionID").hidden = true;
 }
 
 function RandomRoot() {
@@ -157,12 +159,14 @@ function SelectAnswer(selection) {
     }
 
     if (selection == GetCorrectBtn()) {
+        document.getElementById("UIRootWordDefinition").hidden = false;
         document.getElementById("UIRootWordDefinitionID").hidden = false;
         document.getElementById("UIRootWordDefinitionID").innerHTML = GetCorrectEntry()['simple_def'];
 
         document.getElementById('AnswerState').innerText = 'Correct!'
         document.getElementById('AnswerState').style.color = 'green';
 
+        document.getElementById("UIAnswerButtonGroup").hidden = true;
         document.getElementById("ButtonA").hidden = true;
         document.getElementById("ButtonB").hidden = true;
         document.getElementById("ButtonC").hidden = true;
@@ -203,6 +207,8 @@ function SelectAnswer(selection) {
 
         document.getElementById('DerivedWordsTitleLabel').hidden = false;
         document.getElementById('NextButton').hidden = false;
+
+        document.getElementById("DerivedWordsTitleLabel").hidden = false;
         firstTry = true;
     } else {
         document.getElementById('AnswerState').style.color = 'red';
@@ -213,8 +219,34 @@ function SelectAnswer(selection) {
     }
 }
 
+function UISetHidden(hidden) {
+    document.getElementById("UIScoreLabel").hidden = hidden;
+    document.getElementById("UIRootWordDisplayID").hidden = hidden;
+    document.getElementById("UIRootWordTransliterationID").hidden = hidden;
+    document.getElementById("AnswerState").hidden = hidden;
+    document.getElementById("DerivedWordsTitleLabel").hidden = hidden;
+    
+    document.getElementById("UIWelcomeWindow").hidden = !hidden;
+    document.getElementById("ButtonStartGame").hidden = !hidden;
+
+    document.getElementById("NextButton").hidden = hidden;
+    document.getElementById("ButtonA").hidden = hidden;
+    document.getElementById("ButtonB").hidden = hidden;
+    document.getElementById("ButtonC").hidden = hidden;
+    document.getElementById("ButtonD").hidden = hidden;
+}
+
+function NewGame() {
+    UISetHidden(false);
+    NewRound();
+}
+
 function InitUI() {
     SetFont("east");
+
+    UISetHidden(true);
+
+    document.getElementById("ButtonStartGame").onclick = function() {NewGame();};
 
     document.getElementById("ButtonA").onclick = function() {SelectAnswer(Btn.A);};
     document.getElementById("ButtonB").onclick = function() {SelectAnswer(Btn.B);};
@@ -223,8 +255,6 @@ function InitUI() {
 
     document.getElementById('NextButton').onclick = function() {NewRound();};
     UpdateScore(0);
-
-    NewRound();
 }
 
 function InitData() {

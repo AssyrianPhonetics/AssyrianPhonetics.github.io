@@ -14,6 +14,24 @@
         ܛܐܠܬܐ ܒܥܩܪܐ ܕܡܠ̈ܐ ܕܣܘܪܝܬ
     </div>
     <main>
+        <div class="UIWelcomeWindow" id="UIWelcomeWindow">
+            <output type="text" id="UIWelcomeText">
+                A root word will be presented to you with 4 options.
+                </br>
+                Only one option is the correct definition for the given root.
+                </br>
+                Guess as many correctly as possible.
+            </output>
+            </br>
+            </br>
+            <output type="text" id="UIWelcomeText2">
+                Disclaimer: Some definitons still need to be cleaned up.
+            </output>
+            </br>
+            </br>
+            </br>
+            <button class="StartButton" id="ButtonStartGame">ܫܪܝ</button>
+        </div>
         <section class="UIRootWord">
             <div class="UIScoreLabel">
                 <output type="text" id="UIScoreLabel"></output>
@@ -24,13 +42,13 @@
             <div class="UIRootWordTransliteration">
                 <output type="text" id="UIRootWordTransliterationID"></output>
             </div>
-            <div class="UIRootWordDefinition">
+            <div class="UIRootWordDefinition" id="UIRootWordDefinition">
                 <output type="text" id="UIRootWordDefinitionID"></output>
             </div>
             <div class="AnswerState">
                 <output type="text" id="AnswerState"></output>
             </div>
-            <section class=UIAnswerButtonGroup>
+            <section class=UIAnswerButtonGroup id="UIAnswerButtonGroup">
                 <div class="UIRootSelect">
                     <button class="button" id="ButtonA"></button>
                     </br>
@@ -53,9 +71,11 @@
                 <ul id="UIDerivedWordsListDefinitions"></ul>
             </div>
             
+            <section class=NextButtonSection id="NextButtonSection">
             <div id="NextButton">
-                <button class="button" id="NextButton">Next</button>
+                <button class="button" id="NextButton">→</button>
             </div>
+            </section>
         </section>
     </main>
 </body>
