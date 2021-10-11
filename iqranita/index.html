@@ -36,6 +36,9 @@
             <div class="UIScoreLabel">
                 <output type="text" id="UIScoreLabel"></output>
             </div>
+            <div class="UIScoreLabel">
+                <output type="text" id="UIQuestionTracker"></output>
+            </div>
             <div class="UIRootWordDisplay">
                 <output type="text" id="UIRootWordDisplayID"></output>
             </div>
@@ -48,7 +51,7 @@
             <div class="AnswerState">
                 <output type="text" id="AnswerState"></output>
             </div>
-            <section class=UIAnswerButtonGroup id="UIAnswerButtonGroup">
+            <section class=UIAnswerButtonGroup id="UIAnswerButtonGroup" hidden>
                 <div class="UIRootSelect">
                     <button class="button" id="ButtonA"></button>
                     </br>
@@ -60,22 +63,23 @@
                   </div>
             </section>
 
-            <div class="DerivedWordsTitleLabel">
-                <output type="text" id="DerivedWordsTitleLabel">Derived Words</output>
-            </div>
+            <section class="DerivedWordsSection" id="DerivedWordsSection" hidden>
+                <div class="DerivedWordsTitleLabel">
+                    <output type="text" id="DerivedWordsTitleLabel">Derived Words:</output>
+                </div>
+                <div id="UIDerivedWordListID">
+                    <ul id="UIDerivedWordsList"></ul>
+                </div>
+                <div id="UIDerivedWordListDefs">
+                    <ul id="UIDerivedWordsListDefinitions"></ul>
+                </div>
 
-            <div id="UIDerivedWordListID">
-                <ul id="UIDerivedWordsList"></ul>
+                <section class=NextButtonSection id="NextButtonSection">
+                    <div id="NextButton">
+                        <button class="button" id="NextButton">→</button>
+                    </div>
+                </section>
             </div>
-            <div id="UIDerivedWordListDefs">
-                <ul id="UIDerivedWordsListDefinitions"></ul>
-            </div>
-            
-            <section class=NextButtonSection id="NextButtonSection">
-            <div id="NextButton">
-                <button class="button" id="NextButton">→</button>
-            </div>
-            </section>
         </section>
     </main>
 </body>

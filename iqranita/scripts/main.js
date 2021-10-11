@@ -5,34 +5,73 @@ const Btn = {
 	D: "ButtonD",
 }
 
+var Grades = {
+    "A+": 0.97,
+    "A":  0.93,
+    "A-": 0.90,
+    "B+": 0.87,
+    "B":  0.83,
+    "B-": 0.80,
+    "C+": 0.77,
+    "C":  0.73,
+    "C-": 0.70,
+    "D+": 0.67,
+    "D":  0.63,
+    "F":  0.00,
+};
+
 // globals
 var ThisCorrectEntry = null;
 var ThisCorrectBtn = null;
 
+const PreviousAnswers = [];
+
 var score = 0;
-var firstTry = true;
+var tries = 0;
 
 var rootsData = null;
+var keys = null;
+
+const CorrectAnswerScore = 100;
+
+function UpdateTotal() {
+    document.getElementById('UIQuestionTracker').innerText = (1 + PreviousAnswers.length).toString() + '/' + keys.length.toString()  
+}
 
 function UpdateScore(scoreDiff) {
     score += scoreDiff;
-    document.getElementById('UIScoreLabel').innerText = 'Score: ' + score.toString()
+    var gradeStr = ''
+
+    if (PreviousAnswers.length > 0) {    
+        var gradePercent = score / PreviousAnswers.length;
+        var grade = "F";
+    
+        for (var key in Grades) {
+            if (gradePercent >= 100 * Grades[key]) {
+                grade = key;
+                break;
+            }
+        }
+
+        gradeStr = ' - Grade: ' + grade
+    }
+
+    document.getElementById('UIScoreLabel').innerText = 'Score: ' + score.toString() + '/' + (PreviousAnswers.length * CorrectAnswerScore).toString() + gradeStr
 }
 
 function Reset() {
     document.getElementById("UIRootWordDisplayID").innerText = '';
     document.getElementById("UIRootWordTransliterationID").innerText = '';
+    document.getElementById("UIRootWordDefinitionID").innerText = '';
     document.getElementById('AnswerState').innerText = ''
     list = document.getElementById("UIDerivedWordsList");
     deflist = document.getElementById("UIDerivedWordsListDefinitions");
     list.innerHTML = '';
     deflist.innerHTML = '';
 
-    document.getElementById('DerivedWordsTitleLabel').hidden = true;
+    document.getElementById('DerivedWordsSection').hidden = true;
     document.getElementById('NextButton').hidden = true;
     document.getElementById("UIRootWordDefinition").hidden = true;
-    document.getElementById("UIRootWordDefinitionID").hidden = true;
-    document.getElementById("DerivedWordsTitleLabel").hidden = true;
 
     document.getElementById("UIAnswerButtonGroup").hidden = false;
     document.getElementById("ButtonA").hidden = false;
@@ -42,9 +81,6 @@ function Reset() {
 }
 
 function RandomRoot() {
-    // Create array of object keys, ["311", "310", ...]
-    const keys = Object.keys(rootsData)
-
     // Generate random index based on number of keys
     const randIndex = Math.floor(Math.random() * keys.length)
 
@@ -57,14 +93,18 @@ function RandomRoot() {
 
 function RandomRootButExludeArray(arr) {
     var found = false;
+
+    var ent = RandomRoot();
     while(!found) {
-        var ent = RandomRoot();
+        found = true;
+
         for (i = 0; i < arr.length; i++) {
-            if (ent['simple_def'] == arr[i]['simple_def']) {
-                continue;
+            if (ent['word'] == arr[i]['word']) {
+                found = false;
+                ent = RandomRoot();
+                break;
             }
         }
-        found = true;
     }
 
     return ent;
@@ -120,8 +160,19 @@ function GetCorrectEntry() {
 
 function NewRound() {
     Reset()
+    UpdateTotal()
 
-    const AnswerRoot = RandomRoot();
+    if (keys.length == PreviousAnswers.length) {
+        // game over
+        document.getElementById('UIWelcomeText2').innerText = '';
+        document.getElementById('UIWelcomeText').innerText = 'Game Over. You scored ' + score.toString() + ' out of a possible score of ' + (CorrectAnswerScore * keys.length).toString()
+        document.getElementById('ButtonStartGame').innerText = "ܡܢ݇ܕܪܝܫ݇"
+        UISetHidden(true);
+    }
+
+    const AnswerRoot = RandomRootButExludeArray(PreviousAnswers);
+    PreviousAnswers.push(AnswerRoot)
+
     const WrongRootOne = RandomRootButExludeArray([AnswerRoot]);
     const WrongRootTwo = RandomRootButExludeArray([AnswerRoot, WrongRootOne]);
     const WrongRootThree = RandomRootButExludeArray([AnswerRoot, WrongRootOne, WrongRootTwo]);
@@ -180,7 +231,9 @@ function SelectAnswer(selection) {
         list.innerHTML = '';
         deflist.innerHTML = '';
 
-        for (i = 0; i < GetCorrectEntry()["derived_words"].length; i++) {
+        const nDerivedWords = GetCorrectEntry()["derived_words"].length;
+
+        for (i = 0; i < nDerivedWords; i++) {
             dw = GetCorrectEntry()["derived_words"][i]
             dw_def = GetCorrectEntry()["derived_word_defs"][i]
             
@@ -202,23 +255,25 @@ function SelectAnswer(selection) {
             list.appendChild(li);
         }
 
-        if (firstTry) {
-            UpdateScore(150);
+        UpdateScore(CorrectAnswerScore * (4 - tries) / 4);
+        
+        if (nDerivedWords == 0) {
+            document.getElementById('DerivedWordsTitleLabel').innerText = ''
+        } else if (nDerivedWords == 1) {
+            document.getElementById('DerivedWordsTitleLabel').innerText = 'Derived Word:'
         } else {
-            UpdateScore(100);
+            document.getElementById('DerivedWordsTitleLabel').innerText = 'Derived Words:'
         }
-
-        document.getElementById('DerivedWordsTitleLabel').hidden = false;
+        
+        document.getElementById('DerivedWordsSection').hidden = false;        
         document.getElementById('NextButton').hidden = false;
-
-        document.getElementById("DerivedWordsTitleLabel").hidden = false;
-        firstTry = true;
+        
+        tries = 0;
     } else {
         document.getElementById('AnswerState').style.color = 'red';
         document.getElementById('AnswerState').innerText = 'Incorrect, try again.'
 
-        UpdateScore(-10);
-        firstTry = false;
+        tries++;
     }
 }
 
@@ -227,10 +282,9 @@ function UISetHidden(hidden) {
     document.getElementById("UIRootWordDisplayID").hidden = hidden;
     document.getElementById("UIRootWordTransliterationID").hidden = hidden;
     document.getElementById("AnswerState").hidden = hidden;
-    document.getElementById("DerivedWordsTitleLabel").hidden = hidden;
     
     document.getElementById("UIWelcomeWindow").hidden = !hidden;
-    document.getElementById("ButtonStartGame").hidden = !hidden;
+    // document.getElementById("ButtonStartGame").hidden = !hidden;
 
     document.getElementById("NextButton").hidden = hidden;
     document.getElementById("ButtonA").hidden = hidden;
@@ -239,7 +293,15 @@ function UISetHidden(hidden) {
     document.getElementById("ButtonD").hidden = hidden;
 }
 
-function NewGame() {
+async function InitData() {
+    let response = await fetch('../data/roots.json');
+    rootsData = await response.json()
+    keys = Object.keys(rootsData)
+}
+
+async function NewGame() {
+    await InitData();
+    InitUI();
     UISetHidden(false);
     NewRound();
 }
@@ -275,13 +337,6 @@ function InitUI() {
     UpdateScore(0);
 }
 
-function InitData() {
-    $.getJSON("../data/roots.json", function(json){
-        rootsData = json;
-        InitUI();
-    });
-}
-
 $(document).ready(function(){
-    InitData();
+    InitUI();
 });

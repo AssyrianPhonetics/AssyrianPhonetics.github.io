@@ -44,7 +44,7 @@ body {
     color: black;
     font-size: 2em;
     text-align: center;
-    padding: 1.1em;
+    padding: 0em;
     font-family: Verdana,sans-serif
 }
 
@@ -124,12 +124,13 @@ body {
 
 .DerivedWordsTitleLabel {
     font-family: Verdana,sans-serif;
-    padding-left: 3em;
+    padding-left: 2em;
 }
 
 .AnswerState {
     font-family: Verdana,sans-serif;
     text-align: center;
+    padding-bottom: 1em;
 }
 
 .NextButton {
