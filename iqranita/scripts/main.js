@@ -238,7 +238,7 @@ function SelectAnswer(selection) {
             dw_def = GetCorrectEntry()["derived_word_defs"][i]
             
             var defentry = ' [' + InputToIPA(dw)[1] + ']';
-            if (dw_def) {
+            if (dw_def && dw_def.length > 0) {
                 defentry += ' - ' + dw_def;
             }
 
