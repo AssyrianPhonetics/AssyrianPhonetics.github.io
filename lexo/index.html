@@ -1,0 +1,98 @@
+<!-- 
+    @file index.html
+    @author Sargis S Yonan (sargis@yonan.org)
+    @date 1 March 2021
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assyrian Phonetic Tool</title>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Assyrian Phonetics Tool">
+    <meta name="keywords" content="Assyrian,Sureth,phonetic">
+    <meta name="author" content="Sargis Yonan">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto+Mono" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="scripts/mespeak.js"></script>
+    <script type="text/javascript">
+        meSpeak.loadConfig("scripts/mespeak_config.json");
+        meSpeak.loadVoice("scripts/en.json");
+    </script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="waves">
+            <div class="wave one"></div>
+            <div class="wave two"></div>
+            <div class="wave three"></div>
+        </div>
+
+        <div class="main">
+            <header>
+                <a href="#settings" class="info">Settings</a>
+            </header>
+            <div class="filter">
+                <input type="checkbox" id="ZQAPPA" name="zqappa" value="yes"> <label>ܙܩܦܐ</label>
+                <input type="checkbox" id="ZLAMA_KIRYA" name="zlama_kirya" value="yes"> <label>ܙܠܡܐ ܩܫܝܐ</label>
+                <input type="checkbox" id="ZLAMA_YAREKHA" name="zlama_yarekha" value="yes"> <label>ܙܠܡܐ ܦܫܘܩܐ</label>
+            </div>
+            <div class="filter">
+                <input type="checkbox" id="PTAKHA" name="ptakha" value="yes"> <label>ܦܬܚܐ</label>
+                <input type="checkbox" id="RWAKHA" name="rwakha" value="yes"> <label>ܪܘܚܐ</label>
+                <input type="checkbox" id="KHWASA" name="khwasa" value="yes"> <label>ܚܘܣܐ/ܪܘܣܐ</label>
+            </div>
+            <div class="filter">
+                <input type="checkbox" id="MAJLEANA_BOT" name="majbot" value="yes"> <label>ܡܓ̰ܠܝܢܐ</label>
+                <input type="checkbox" id="TALQANA" name="talqana" value="yes"> <label>ܬܠܩܢܐ</label>
+            </div>
+            <button id="search" type="search">Search</button>
+
+            <div id="UIFoundWords">
+                <ul id="UIFoundWordsList"></ul>
+            </div>
+
+        </div>
+
+        
+        <aside id="settings" class="info">
+            <h2> Settings </h2>
+            <p>
+                <div class="scriptdropdown">
+                    <label for="scriptname">Script:</label>
+                    <select name="scriptname" id="scriptname" onchange="DropdownSelect(false)">
+                        <option value="east">Eastern</option>
+                        <option value="classical">Classical</option>
+                        <option value="west">Western</option>
+                    </select>
+                </div>
+                <div class="scriptex">
+                    <output type="text" id="scriptex">
+                </div>
+            </p>        
+        </aside>
+    </div>
+</div>
+</div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/SyrParser.js"></script>
+    <script src="scripts/words.js"></script>
+</body>
+</html>

@@ -1,0 +1,584 @@
+:root {
+    --main-color: #dddddd;
+    --main-color-darker: #888888;
+    --main-color-darkest: #383838;
+    --font-color: rgb(24, 24, 24);
+    --default-font: 'Roboto Slab', sans-serif;
+    --monospace-font: 'Roboto Mono', monospace;
+}
+
+@keyframes drift {
+    from { transform: rotate(0deg); }
+    from { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes tide {
+    0% { background-position: 0% 51% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 51% }
+}
+@-moz-keyframes tide {
+    0% { background-position: 0% 51% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 51% }
+}
+@keyframes tide {
+    0% { background-position: 0% 51% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 51% }
+}
+
+html, body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+html {
+    background: var(--main-color);
+    background: linear-gradient(
+        260deg,
+        #4e7db1,
+        var(--main-color),
+        var(--main-color),
+        #8b3434,
+        var(--main-color),
+        var(--main-color)
+    );
+    background-size: 1200% 1200%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html{
+        -webkit-animation: tide 43s ease infinite;
+        -moz-animation: tide 43s ease infinite;
+        animation: tide 43s ease infinite;
+    }
+
+    /* .wave {
+        left: 50%;
+        height: 100%;
+        width: 100%;
+        margin-left: -50%;
+        transform-origin: 50% 48%;
+        border-radius: 43%;
+
+        animation: drift 3000ms infinite linear;
+    }
+
+    .wave.two {
+        animation: drift 7000ms infinite linear;
+    }
+
+    .wave.three {
+        animation: drift 5000ms infinite linear;
+    } */
+}
+
+@media (prefers-reduced-motion) {
+    .wave {
+        height: 100vh;
+        width: 100vh;
+        margin: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+body {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    font-family: var(--default-font);
+    font-size: 1.25em;
+    line-height: 1.25em;
+}
+
+.box {
+    height: 95%;
+    width: 100%;
+    margin: auto;
+    overflow: scroll;
+    position: relative;
+}
+
+.waves {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+}
+
+.waves::after {
+    content: '';
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(rgb(216, 216, 216), 1), rgba(#def, 0) 80%, rgba(white, .5));
+    transform: translate3d(0, 0, 0);
+    z-index: 11;
+}
+
+.wave {
+    opacity: .4;
+    position: absolute;
+    top: 0;
+    background: #f2d0ea;
+}
+
+.wave.two {
+    background: #b5f2ff;
+}
+
+.wave.three {
+    background: #d7badd;
+}
+
+.main {
+    height: 66%;
+    width: 66%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.main,
+
+.filter {
+    /* position: absolute; */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.filter label{
+    margin: 0px 1em 0em .3em;
+    font-family: EastSyriacAdiabene;
+    font-size: 32pt;
+    src:url("fonts/syrcomadiabene.woff");
+}   
+.filter,
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+}
+
+header,
+.error,
+form,
+.slidecontainer,
+.talkspeed,
+.input,
+.select,
+button,
+.ipaout,
+.scriptex,
+.definition,
+.latinout,
+.scriptdropdown,
+.audio {
+    flex: 0 1 auto;
+    margin: .75em auto;
+}
+
+header {
+    margin: 0em auto;
+}
+
+h1 {
+    color: var(--main-color-darkest);
+    line-height: 1em;
+    margin: 0 auto;
+}
+
+.slider{
+    -webkit-appearance: none;
+     width:100%; 
+     border-radius:15px; 
+     overflow:hidden; 
+     outline:none;
+}
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+.error {
+    display: none;
+    margin: 1em auto 0em;
+    color: darkred;
+}
+.ipaout {
+    display: block;
+    margin: .5em auto .5em;
+    color: black;
+}
+.scriptex {
+    display: block;
+    margin: .25em auto .25em;
+    color: black;
+    overflow: scroll;
+    text-align: center;
+    font-size: 36pt;
+    padding:15px;
+}
+.definition {
+    display: block;
+    margin: 0em auto .0em;
+    color: black;
+    font-size: small;
+}
+.latinout {
+    display: block;
+    margin: .5em auto .1em;
+    color: black;
+    font-size: small;
+}
+
+.UIFoundWordsList {
+    direction:rtl;
+    color: black;
+    padding-top: .0em;
+    font-size: 10em;
+    text-align: right;
+    font-family: EastSyriacAdiabene;
+    src:url("fonts/syrcomadiabene.woff");
+}
+
+.talkspeed {
+    display: block;
+    margin: 0em auto 0em;
+    color: black;
+}
+.talkpitch {
+    display: block;
+    margin: 0em auto 0em;
+    color: black;
+}
+
+.scriptdropdown {
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+form {
+    flex-grow: none;
+    margin: 0 auto;
+    padding: 1em;
+    height: 100%;
+    width: calc(100% - 2em);
+}
+
+input, .input,
+select, .select {
+    text-align: center;
+}
+
+input,
+.select,
+button {
+    height: 2.5em;
+    min-height: 2.5em;
+}
+
+.input {
+    width: 100%;
+}
+.input::before,
+/* .input::after {
+    content: "/";
+    opacity: .55;
+} */
+input {
+    height: 1em;
+    font-size: 1.5em;
+    width: calc(100% - 4.5ex);
+}
+.select {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    font-size: 1em;
+    color: var(--font-color);
+    width: 100%;
+}
+.select-styled {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--main-color);
+    padding: .6em 1.5em .6em .9em;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.select-styled::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-color: var(--font-color) transparent transparent transparent;
+    position: absolute;
+    top: 1.2em;
+    right: .75em;
+}
+.select-styled:hover {
+    background-color: var(--main-color-darkest);
+}
+.select-styled:active,
+.select-styled.active {
+    background-color: var(--main-color-darker);
+}
+.select-styled:active::after,
+.select-styled.active::after {
+    top: .75em;
+    border-color: transparent transparent var(--font-color) transparent;
+}
+.select-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: var(--main-color);
+    max-height: 7.7em;
+    overflow-y: auto;
+}
+.select-options li {
+    margin: 0;
+    padding: 12px 0;
+    text-indent: 15px;
+    border-top: 1px solid var(--main-color-darker);
+    -moz-transition: all 0.15s ease-in;
+    -o-transition: all 0.15s ease-in;
+    -webkit-transition: all 0.15s ease-in;
+    transition: all 0.15s ease-in;
+}
+.select-options li:hover {
+    color: var(--main-color-darker);
+    background: var(--font-color);
+    opacity: .9;
+}
+.select-options li[rel="hide"] {
+    display: none;
+}
+select.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+button {
+    display: block;
+    border: 1px solid black;
+    background: var(--main-color);
+    color: var(--font-color);
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    min-width: 25%;
+    padding: .5em 1em;
+}
+
+button:hover {
+    background: var(--main-color-darkest);
+}
+
+button[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.audio {
+    position: relative;
+    height: 2em;
+    width: 75%;
+    margin-bottom: 1em;
+}
+
+audio {
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+a#share {
+    position: absolute;
+    top: 3em;
+    left: 0;
+    right: 0;
+    margin-top: 1.5em;
+    color: var(--font-color);
+    font-size: .8em;
+}
+
+a.info {
+    color: var(--font-color);
+    font-size: .8em;
+}
+
+aside.info::before {
+    content: '';
+    background-color: #f0efef;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+}
+
+aside.info {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    margin: 0em auto;
+    height: 100vh;
+    max-height: 100vh;
+    width: 75%;
+    padding: 0 2em;
+    border-radius: 0;
+    font-size: .8em;
+    color: var(--main-color-darkest);
+}
+
+aside.info p {
+    margin: .5em auto;
+}
+
+aside.info a {
+    color: var(--font-color);
+}
+
+aside.info .close {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    padding: 1em;
+    margin: -1em;
+    font-size: 1.5em;
+    font-family: serif;
+    font-weight: 100;
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+aside.info h2 {
+    margin: .75em auto;
+}
+
+code {
+    font-family: var(--monospace-font);
+    opacity: .8;
+    white-space: nowrap;
+}
+
+ul.social {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.social li {
+    display: inline-block;
+    margin: .75em;
+}
+
+ul.social svg {
+    fill: var(--font-color);
+}
+
+@media (max-height: 100%), (max-width: 100%) {
+    .box {
+        height: 120vh;
+        width: 120vw;
+        min-height: 75%;
+        min-width: 75%;
+        margin: calc((100vh - 100vw) / 2) calc((100vw - 100vh) / 2);
+    }
+
+    .main {
+        max-height: 100vh;
+        max-width: 100vw;
+    }
+
+    .filter {
+        text-align:center;
+    }
+
+    form {
+        width: 80%;
+    }
+
+    aside.info {
+        justify-content: flex-start;
+        width: calc(100vw - 4em);
+        padding: 0 2em;
+        overflow-y: auto;
+    }
+
+    aside.info h2 {
+        margin: .5em auto;
+    }
+
+    aside.info h2:first-child {
+        margin-top: 1.1em;
+    }
+}
+
+@media (max-width: 75%) {
+    .box {
+        height: 100vw;
+        width: 100vw;
+    }
+
+    ul.social {
+        margin-bottom: 3em;
+    }
+}
+
+@media (max-height: 75%) {
+    .box {
+        height: 100vh;
+        width: 100vh;
+    }
+}
+
+input[type="checkbox"]{
+    width: 1em; /*Desired width*/
+    height: 1em; /*Desired height*/
+  }
