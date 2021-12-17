@@ -104,6 +104,8 @@ function DropdownSelect() {
             }\
     "));
     document.getElementById("iqralink").style.fontFamily = fontfamily;
+    document.getElementById("lexolink").style.fontFamily = fontfamily;
+    
     document.head.appendChild(newStyle);
 }
 
