@@ -166,6 +166,13 @@ body {
     src:url("fonts/syrcomadiabene.woff");
 }   
 .filter,
+
+/* .search {
+    font-family: EastSyriacAdiabene;
+    font-size: 32pt;
+    src:url("fonts/syrcomadiabene.woff");
+} */
+
 form {
     display: flex;
     justify-content: center;
@@ -395,6 +402,8 @@ button {
     border: 1px solid black;
     background: var(--main-color);
     color: var(--font-color);
+    font-family: "EastSyriacAdiabene";
+    font-size: 24pt;
     white-space: nowrap;
     text-decoration: none;
     cursor: pointer;

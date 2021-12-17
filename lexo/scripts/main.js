@@ -101,8 +101,8 @@ function DropdownSelect(init) {
     "));
     document.head.appendChild(newStyle);
 
-    var filter = document.createElement('ZQAPPA');
-   filter.style.fontFamily = fontfamily;
+    var but = document.createElement('search');
+    but.style.fontFamily = fontfamily;
     
     // re-run search with new font
     if (!init)
